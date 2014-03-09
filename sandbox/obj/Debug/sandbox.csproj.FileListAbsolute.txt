@@ -1,0 +1,11 @@
+C:\Prog\Personal\XinJishu\sandbox\obj\Debug\sandbox.csprojResolveAssemblyReference.cache
+C:\Prog\Personal\XinJishu\sandbox\bin\Debug\sandbox.exe.config
+C:\Prog\Personal\XinJishu\sandbox\bin\Debug\sandbox.exe
+C:\Prog\Personal\XinJishu\sandbox\bin\Debug\sandbox.pdb
+C:\Prog\Personal\XinJishu\sandbox\bin\Debug\XinJishu.dll
+C:\Prog\Personal\XinJishu\sandbox\bin\Debug\CryptSharp.dll
+C:\Prog\Personal\XinJishu\sandbox\bin\Debug\XinJishu.pdb
+C:\Prog\Personal\XinJishu\sandbox\bin\Debug\CryptSharp.pdb
+C:\Prog\Personal\XinJishu\sandbox\bin\Debug\CryptSharp.xml
+C:\Prog\Personal\XinJishu\sandbox\obj\Debug\sandbox.exe
+C:\Prog\Personal\XinJishu\sandbox\obj\Debug\sandbox.pdb

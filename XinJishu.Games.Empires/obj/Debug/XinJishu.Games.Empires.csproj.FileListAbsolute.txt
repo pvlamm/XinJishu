@@ -2,3 +2,4 @@ C:\Prog\Personal\XinJishu\XinJishu.Games.Empires\bin\Debug\XinJishu.Games.Empire
 C:\Prog\Personal\XinJishu\XinJishu.Games.Empires\bin\Debug\XinJishu.Games.Empires.pdb
 C:\Prog\Personal\XinJishu\XinJishu.Games.Empires\obj\Debug\XinJishu.Games.Empires.dll
 C:\Prog\Personal\XinJishu\XinJishu.Games.Empires\obj\Debug\XinJishu.Games.Empires.pdb
+C:\Prog\Personal\XinJishu\XinJishu.Games.Empires\obj\Debug\XinJishu.Games.Empires.csprojResolveAssemblyReference.cache
