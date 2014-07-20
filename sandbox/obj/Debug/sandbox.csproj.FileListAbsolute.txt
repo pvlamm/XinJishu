@@ -9,3 +9,6 @@ C:\Prog\Personal\XinJishu\sandbox\bin\Debug\CryptSharp.pdb
 C:\Prog\Personal\XinJishu\sandbox\bin\Debug\CryptSharp.xml
 C:\Prog\Personal\XinJishu\sandbox\obj\Debug\sandbox.exe
 C:\Prog\Personal\XinJishu\sandbox\obj\Debug\sandbox.pdb
+C:\Prog\Personal\XinJishu\sandbox\bin\Debug\Newtonsoft.Json.dll
+C:\Prog\Personal\XinJishu\sandbox\bin\Debug\Newtonsoft.Json.xml
+C:\Prog\Personal\XinJishu\sandbox\bin\Debug\GeoCoding.dll

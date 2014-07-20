@@ -9,10 +9,10 @@ namespace XinJishu.Games.Empires.Generators
 {
     public class GameObjectFactory : IGameObjectFactory
     {
-        public Models.ObjectBase Generate<T>(Int32? seed)
+        public ObjectBase Generate<T>(Int32? seed)
         {
             if (typeof(T) == typeof(Planet)) { return GeneratePlanet(seed); }
-            else if (typeof(T) == typeof(SolarSystem)) { return GenerateSolarSystem(seed); }
+            else if (typeof(T) == typeof(Star)) { return GenerateSolarSystem(seed); }
             else if (typeof(T) == typeof(Galaxy)) { return GenerateGalaxy(seed); }
 
             return null;
@@ -33,9 +33,9 @@ namespace XinJishu.Games.Empires.Generators
             return planet;
         }
 
-        private SolarSystem GenerateSolarSystem(Int32? seed = null)
+        private Star GenerateSolarSystem(Int32? seed = null)
         {
-            SolarSystem solar_system = new SolarSystem();
+            Star solar_system = new Star();
             if (seed.HasValue) { }
             else { }
 

@@ -41,11 +41,12 @@
   <ItemGroup>
     <Compile Include="Generators\GameObjectFactory.cs" />
     <Compile Include="Generators\IGameObjectFactory.cs" />
+    <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\ObjectBase.cs" />
     <Compile Include="Models\Galaxy.cs" />
     <Compile Include="Models\Planet.cs" />
     <Compile Include="Models\Player.cs" />
-    <Compile Include="Models\SolarSystem.cs" />
+    <Compile Include="Models\Star.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

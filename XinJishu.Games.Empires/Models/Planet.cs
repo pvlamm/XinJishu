@@ -9,6 +9,6 @@ namespace XinJishu.Games.Empires.Models
     public class Planet : ObjectBase
     {
         public String dna { get; set; }
-        
+        public PlanetType type { get; set; }
     }
 }
