@@ -27,4 +27,13 @@ namespace XinJishu.Games.Empires.Models
         Hostile,
         GasGiant
     }
+
+    public enum GalaxyShape
+    {
+        Two_Arm,
+        Three_Arm,
+        Blob,
+        Islands
+
+    }
 }

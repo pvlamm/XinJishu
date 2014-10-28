@@ -8,6 +8,14 @@ namespace XinJishu.Games.Empires.Models
 {
     public class Galaxy : ObjectBase
     {
+        public Galaxy()
+        {
+            stars = new List<Star>();
+        }
 
+        public Int32 id { get; set; }
+        public String name { get; set; }
+        public GalaxyShape galaxy_shape { get; set; }
+        public virtual List<Star> stars { get; set; }
     }
 }

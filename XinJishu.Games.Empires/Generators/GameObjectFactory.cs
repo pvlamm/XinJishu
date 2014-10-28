@@ -7,6 +7,7 @@ using XinJishu.Games.Empires.Models;
 
 namespace XinJishu.Games.Empires.Generators
 {
+    // TODO: Revamp the GameObject Factory, make some private objects public, and actually DO something
     public class GameObjectFactory : IGameObjectFactory
     {
         public ObjectBase Generate<T>(Int32? seed)
@@ -18,7 +19,7 @@ namespace XinJishu.Games.Empires.Generators
             return null;
         }
 
-        private Planet GeneratePlanet(Int32? seed = null)
+        public Planet GeneratePlanet(Int32? seed = null)
         {
             Planet planet = new Planet();
             if (seed.HasValue)
@@ -33,7 +34,7 @@ namespace XinJishu.Games.Empires.Generators
             return planet;
         }
 
-        private Star GenerateSolarSystem(Int32? seed = null)
+        public Star GenerateSolarSystem(Int32? seed = null)
         {
             Star solar_system = new Star();
             if (seed.HasValue) { }
@@ -42,7 +43,7 @@ namespace XinJishu.Games.Empires.Generators
             return solar_system;
         }
 
-        private Galaxy GenerateGalaxy(Int32? seed = null)
+        public Galaxy GenerateGalaxy(Int32? seed = null)
         {
             Galaxy galaxy = new Galaxy();
             if (seed.HasValue) { }
