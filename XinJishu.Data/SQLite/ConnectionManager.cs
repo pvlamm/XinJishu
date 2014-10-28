@@ -8,7 +8,7 @@ using System.Data.SQLite;
 
 namespace XinJishu.Data.SQLite
 {
-    public abstract class ConnectionManager
+    public abstract class ConnectionManager : IDisposable
     {
         private SQLiteConnection sql_conn { get; set; }
         private String connection_string { get; set; }
@@ -32,5 +32,10 @@ namespace XinJishu.Data.SQLite
             return sql_conn.CreateCommand();
         }
 
+
+        public void Dispose()
+        {
+            sql_conn.Dispose();
+        }
     }
 }
