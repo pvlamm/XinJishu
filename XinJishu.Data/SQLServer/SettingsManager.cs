@@ -11,7 +11,11 @@ namespace XinJishu.Data.SQLServer
 {
     public class SettingsManager : ConnectionManager, ISettings
     {
-        public SettingsManager(String connection_string) : base(connection_string) { }
+        public SettingsManager(String connection_string) : base(connection_string) {
+
+            InitializeTable();
+
+        }
         public T GetValue<T>(string Key)
         {
             using (SqlCommand sql_comm = this.GetCommand())
@@ -81,6 +85,25 @@ namespace XinJishu.Data.SQLServer
                 return Count == 1;
 
             }
+        }
+
+        private void InitializeTable()
+        {
+
+            String sql = @"
+IF NOT EXISTS (select * from sysobjects where name='Settings' and xtype='U')
+    CREATE TABLE Settings (
+        [Key] VARCHAR(25) UNIQUE NOT NULL PRIMARY KEY,
+        [Value] NVARCHAR(5120) NULL
+    )
+GO";
+            using (SqlCommand cmd = GetCommand())
+            {
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = sql;
+                cmd.ExecuteNonQuery();
+            }
+
         }
     }
 }
