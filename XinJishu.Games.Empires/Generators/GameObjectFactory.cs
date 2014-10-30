@@ -19,11 +19,12 @@ namespace XinJishu.Games.Empires.Generators
             return null;
         }
 
-        public Planet GeneratePlanet(Int32? seed = null)
+        private Planet GeneratePlanet(Int32? seed = null)
         {
             Planet planet = new Planet();
             if (seed.HasValue)
             {
+                planet.type = (PlanetType)(seed.Value % Enum.GetNames(typeof(PlanetType)).Length);
 
 
             }
@@ -34,7 +35,7 @@ namespace XinJishu.Games.Empires.Generators
             return planet;
         }
 
-        public Star GenerateSolarSystem(Int32? seed = null)
+        private Star GenerateSolarSystem(Int32? seed = null)
         {
             Star solar_system = new Star();
             if (seed.HasValue) { }
@@ -43,7 +44,7 @@ namespace XinJishu.Games.Empires.Generators
             return solar_system;
         }
 
-        public Galaxy GenerateGalaxy(Int32? seed = null)
+        private Galaxy GenerateGalaxy(Int32? seed = null)
         {
             Galaxy galaxy = new Galaxy();
             if (seed.HasValue) { }

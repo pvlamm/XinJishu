@@ -10,5 +10,8 @@ namespace XinJishu.Games.Empires.Models
     {
         public String dna { get; set; }
         public PlanetType type { get; set; }
+        public Double radius { get; set; }
+        public Double orbital_period { get; set; }
+        public Double orbital_speed { get; set; }
     }
 }

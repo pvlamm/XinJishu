@@ -63,10 +63,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLite\ConnectionManager.cs" />
     <Compile Include="SQLite\SettingsManager.cs" />
+    <Compile Include="SQLServer\ConnectionManager.cs" />
+    <Compile Include="SQLServer\SettingsManager.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SQLServer\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
