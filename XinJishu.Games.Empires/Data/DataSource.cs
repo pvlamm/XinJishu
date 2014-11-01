@@ -36,5 +36,24 @@ namespace XinJishu.Games.Empires.Data
                 return galaxies;
             }
         }
+
+        public Galaxy GetGalaxy_ByPublicId(Guid public_id)
+        {
+            using (var cmd = this.GetCommand())
+            {
+
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.CommandText = "[dbo].[Galaxy_ByPublicId]";
+                cmd.Parameters.AddWithValue("@public_id", public_id);
+
+                DataTable dt = ExecuteDataTable(cmd);
+
+                if (dt.Rows.Count > 0)
+                    return Converter.ToGalaxy(dt.Rows[0]);
+
+                return null;
+
+            }
+        }
     }
 }
