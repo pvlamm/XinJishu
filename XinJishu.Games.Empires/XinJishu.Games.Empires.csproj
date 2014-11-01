@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Converter.cs" />
+    <Compile Include="Data\DataSource.cs" />
     <Compile Include="Generators\GameObjectFactory.cs" />
     <Compile Include="Generators\IGameObjectFactory.cs" />
     <Compile Include="Models\Enums.cs" />
@@ -54,6 +56,9 @@
       <Project>{d70e70d7-001d-437a-8afb-715cac4ab602}</Project>
       <Name>XinJishu.Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\starnames.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

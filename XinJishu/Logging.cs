@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace XinJishu
 {
-    class Logging
+    public class Logging
     {
     }
 }

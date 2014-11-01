@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Logging.cs" />
     <Compile Include="Security\CryptoHelper.cs" />
     <Compile Include="Security\PasswordManager.cs" />
     <Compile Include="Security\RSAHelper.cs" />
