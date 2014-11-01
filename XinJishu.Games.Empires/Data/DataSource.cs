@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace XinJishu.Games.Empires.Data
             this.galaxy_id = galaxy_id;
         }
 
-        public IEnumerable<Galaxy> GetGalaxies()
+        public IEnumerable<Galaxy> Galaxies_SelectAll()
         {
             using (var cmd = this.GetCommand())
             {
@@ -37,7 +38,7 @@ namespace XinJishu.Games.Empires.Data
             }
         }
 
-        public Galaxy GetGalaxy_ByPublicId(Guid public_id)
+        public Galaxy Galaxy_GetByPublicId(Guid public_id)
         {
             using (var cmd = this.GetCommand())
             {
@@ -52,6 +53,30 @@ namespace XinJishu.Games.Empires.Data
                     return Converter.ToGalaxy(dt.Rows[0]);
 
                 return null;
+
+            }
+        }
+
+        public Galaxy Galaxy_Create(String name, GalaxyShape shape, Boolean active)
+        {
+            using (var cmd = this.GetCommand())
+            {
+                Int32 id = 0;
+
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.CommandText = "[dbo].[Galaxy_ByPublicId]";
+                cmd.Parameters.AddWithValue("@name", name);
+                cmd.Parameters.AddWithValue("@shape", shape.ToString());
+                cmd.Parameters.AddWithValue("@active", active);
+                SqlParameter param = new SqlParameter("@id", id);
+                param.Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(param);
+
+                cmd.ExecuteNonQuery();
+
+                id = Convert.ToInt32( param.Value );
+
+                return new Galaxy();
 
             }
         }
