@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,9 +24,16 @@ namespace XinJishu.Games.Empires.Data
             using (var cmd = this.GetCommand())
             {
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.CommandText = "[dbo].[Galaxies_Select]";
+                cmd.CommandText = "[dbo].[Galaxy_SelectAll]";
+
+                DataTable dt = ExecuteDataTable(cmd);
                 
-                
+                List<Galaxy> galaxies = new List<Galaxy>();
+
+                foreach (DataRow dr in dt.Rows)
+                    galaxies.Add(Converter.ToGalaxy(dr));
+
+                return galaxies;
             }
         }
     }

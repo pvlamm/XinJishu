@@ -17,6 +17,8 @@ namespace XinJishu.Games.Empires.Data
             g.galaxy_shape = (GalaxyShape)Enum.Parse(typeof(GalaxyShape), dr["Shape"].ToString(), true);
             g.id = Convert.ToInt32(dr["id"]);
             g.name = Convert.ToString(dr["name"]);
+            g.active = Convert.ToBoolean(dr["active"]);
+            g.create_on = Convert.ToDateTime(dr["create_on"]);
 
             return g;
         }

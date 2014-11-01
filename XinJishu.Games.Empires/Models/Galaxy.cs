@@ -14,8 +14,11 @@ namespace XinJishu.Games.Empires.Models
         }
 
         public Int32 id { get; set; }
+        public Guid public_id { get; set; }
         public String name { get; set; }
         public GalaxyShape galaxy_shape { get; set; }
+        public Boolean active { get; set; }
+        public DateTime create_on { get; set; }
         public virtual List<Star> stars { get; set; }
     }
 }

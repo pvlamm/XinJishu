@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -32,9 +33,20 @@ namespace XinJishu.Data.SQLServer
 
         }
 
+        public DataTable ExecuteDataTable(SqlCommand cmd)
+        {
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+
+            sda.Fill(dt);
+
+            return dt;
+        }
+
         public void Dispose()
         {
             this.conn.Dispose();
         }
+
     }
 }

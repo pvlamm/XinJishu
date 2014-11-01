@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
+using System.Data;
 
 
 namespace XinJishu.Data.SQLite
@@ -32,7 +33,15 @@ namespace XinJishu.Data.SQLite
             return sql_conn.CreateCommand();
         }
 
+        public DataTable ExecuteDataTable(SQLiteCommand cmd)
+        {
+            SQLiteDataAdapter sda = new SQLiteDataAdapter(cmd);
+            DataTable dt = new DataTable();
 
+            sda.Fill(dt);
+
+            return dt;
+        }
         public void Dispose()
         {
             sql_conn.Dispose();
