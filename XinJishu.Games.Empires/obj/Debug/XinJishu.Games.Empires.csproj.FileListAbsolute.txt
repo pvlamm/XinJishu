@@ -2,3 +2,8 @@ C:\Prog\Personal\XinJishu\XinJishu.Games.Empires\bin\Debug\XinJishu.Games.Empire
 C:\Prog\Personal\XinJishu\XinJishu.Games.Empires\bin\Debug\XinJishu.Games.Empires.pdb
 C:\Prog\Personal\XinJishu\XinJishu.Games.Empires\obj\Debug\XinJishu.Games.Empires.dll
 C:\Prog\Personal\XinJishu\XinJishu.Games.Empires\obj\Debug\XinJishu.Games.Empires.pdb
+C:\Prog\Personal\XinJishu\XinJishu.Games.Empires\bin\Debug\XinJishu.Data.dll
+C:\Prog\Personal\XinJishu\XinJishu.Games.Empires\bin\Debug\System.Data.SQLite.dll
+C:\Prog\Personal\XinJishu\XinJishu.Games.Empires\bin\Debug\XinJishu.Data.pdb
+C:\Prog\Personal\XinJishu\XinJishu.Games.Empires\bin\Debug\System.Data.SQLite.xml
+C:\Prog\Personal\XinJishu\XinJishu.Games.Empires\obj\Debug\XinJishu.Games.Empires.csprojResolveAssemblyReference.cache

@@ -8,6 +8,8 @@ namespace XinJishu.Games.Empires.Models
 {
     public class Star : ObjectBase
     {
+        public Decimal radius { get; set; }
+        public Decimal speed { get; set; }
         public StarType type { get; set; }
         public Decimal diameter { get; set; }
         public Int32 size { get; set; }
