@@ -15,7 +15,6 @@ namespace XinJishu.Games.Empires.Models
 
         public GalaxyShape galaxy_shape { get; set; }
         public Boolean active { get; set; }
-        public DateTime create_on { get; set; }
         public virtual List<Star> stars { get; set; }
     }
 }

@@ -11,5 +11,7 @@ namespace XinJishu.Games.Empires.Models
         public Int32 id { get; set; }
         public String name { get; set; }
         public Guid public_id { get; set; }
+        public DateTime create_on { get; set; }
+
     }
 }
