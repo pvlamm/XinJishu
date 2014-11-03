@@ -22,5 +22,22 @@ namespace XinJishu.Games.Empires.Data
 
             return g;
         }
+
+        public static Star ToStar(DataRow dr)
+        {
+            Star s = new Star();
+
+            s.id = Convert.ToInt32(dr["id"]);
+            s.public_id = Guid.Parse(dr["public_id"].ToString());
+            s.name = Convert.ToString(dr["name"]);
+            s.mass = Convert.ToDecimal(dr["mass"]);
+            s.radius = Convert.ToDecimal(dr["radius"]);
+            s.galactic_radius = Convert.ToDecimal(dr["galactic_radius"]);
+            s.type = (StarType)Enum.Parse(typeof(StarType), dr["type"].ToString(), true);
+            s.speed = Convert.ToDecimal(dr["speed"]);
+            s.size = Convert.ToInt32(dr["size"]);
+
+            return s;
+        }
     }
 }

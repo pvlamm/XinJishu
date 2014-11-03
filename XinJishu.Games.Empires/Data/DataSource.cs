@@ -81,8 +81,6 @@ namespace XinJishu.Games.Empires.Data
             }
         }
 
-
-
         public Star Star_Create(Int32 Galaxy_Id, String name, Decimal radius, Decimal galactic_radius, Decimal speed, StarType type,
             Decimal diameter, Int32 size, Decimal mass)
         {
@@ -121,7 +119,21 @@ namespace XinJishu.Games.Empires.Data
 
         public Star Star_SelectById(Int32 id)
         {
-            return new Star();
+
+            using (var cmd = GetCommand())
+            {
+                cmd.CommandText = "[dbo].[Star_ById]";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id", id);
+
+                DataTable dt = ExecuteDataTable(cmd);
+
+                if(dt.Rows.Count > 0)
+                    return Converter.ToStar(dt.Rows[0]);
+
+            }
+
+            return null;
         }
     }
 }
