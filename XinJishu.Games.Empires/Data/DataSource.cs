@@ -82,5 +82,46 @@ namespace XinJishu.Games.Empires.Data
         }
 
 
+
+        public Star Star_Create(Int32 Galaxy_Id, String name, Decimal radius, Decimal galactic_radius, Decimal speed, StarType type,
+            Decimal diameter, Int32 size, Decimal mass)
+        {
+            Star s = new Star();
+
+            using (var cmd = GetCommand())
+            {
+                cmd.CommandText = "[dbo].[Star_Create]";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Galaxy_Id", Galaxy_Id);
+                cmd.Parameters.AddWithValue("@name", name);
+                cmd.Parameters.AddWithValue("@radius", radius);
+                cmd.Parameters.AddWithValue("@galactic_radius", galactic_radius);
+                cmd.Parameters.AddWithValue("@speed", speed);
+                cmd.Parameters.AddWithValue("@type", type.ToString());
+                cmd.Parameters.AddWithValue("@diameter", diameter);
+                cmd.Parameters.AddWithValue("@size", size);
+                cmd.Parameters.AddWithValue("@mass", mass);
+
+                Int32 id = 0;
+                SqlParameter param = new SqlParameter("@id", id);
+                param.Direction = ParameterDirection.Output;
+
+                cmd.Parameters.Add(param);
+
+                cmd.ExecuteNonQuery();
+
+                id = Convert.ToInt32(param.Value);
+
+                return Star_SelectById(id);
+
+            }
+
+            return s;
+        }
+
+        public Star Star_SelectById(Int32 id)
+        {
+            return new Star();
+        }
     }
 }
