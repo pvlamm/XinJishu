@@ -18,6 +18,17 @@ namespace XinJishu.Games.Empires.Models
         Red
     }
 
+    public enum StarSize
+    {
+        Ia,
+        Ib,
+        II,
+        III,
+        IV,
+        V,
+        VI
+    }
+
     public enum PlanetType 
     {
         Earthlike,
