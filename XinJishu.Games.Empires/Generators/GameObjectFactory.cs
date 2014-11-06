@@ -53,7 +53,7 @@ namespace XinJishu.Games.Empires.Generators
             else if (Roll18 > 5) { solar_system.type = StarType.White; }
             else if (Roll18 > 3) { solar_system.type = StarType.Yellow; }
             else if (Roll18 > 2) { solar_system.type = StarType.YellowWhite; }
-            else if (Roll18 > 1) { solar_system.type = StarType.BlueWhite; }
+            else if (Roll18 >= 1) { solar_system.type = StarType.BlueWhite; }
 
             return solar_system;
         }

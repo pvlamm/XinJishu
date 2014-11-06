@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Data\Converter.cs" />
     <Compile Include="Data\DataSource.cs" />
+    <Compile Include="Dice.cs" />
     <Compile Include="Generators\GameObjectFactory.cs" />
     <Compile Include="Generators\IGameObjectFactory.cs" />
     <Compile Include="Models\Enums.cs" />
