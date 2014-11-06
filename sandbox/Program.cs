@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using XinJishu.Security;
+using XinJishu;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using GeoCoding;
@@ -30,48 +31,67 @@ namespace sandbox
     {
         static void Main(string[] args)
         {
-            //Test();
+            Guid x = Guid.NewGuid();
 
-            //GeoAddress address = new GeoAddress();
+            for (int i = 0; i < 500; i++)
+            {
+                if (i % 5 == 0)
+                    x = Guid.NewGuid();
 
-            //address.Address = "6600 AAA Dr";
-            //address.City = " Charlotte";
-            //address.State = "NC";
-            //address.Zip = "28212";
+                Console.WriteLine("Adding x - " + x.ToString() + " resulted in " + RequestBlocker.Instance.AddRequest(x));
 
-            //GeoCode(address);
+            }
 
-            //String email = " , vorfeed@yahoo.com";
-            //email = email.Trim();
+            Console.WriteLine("Removed x " + x.ToString() + " resulted in " 
+                + RequestBlocker.Instance.RemoveRequest(x.ToString()));
 
-            //if( email[0] == ',' )
-            //{
-            //    email = email.Substring(1, email.Length - 1).Trim();
-            //}
+            Console.WriteLine("x Exists- " + x.ToString() + " resulted in " + RequestBlocker.Instance.RequestExists(x));
 
-            //Console.WriteLine(email);
-            
-            //RSATest();
+            Console.WriteLine("Adding x - " + x.ToString() + " resulted in " + RequestBlocker.Instance.AddRequest(x));
 
-            //Program program = new Program();
+            Console.WriteLine("x Exists- " + x.ToString() + " resulted in " + RequestBlocker.Instance.RequestExists(x));
+                //Test();
+
+                //GeoAddress address = new GeoAddress();
+
+                //address.Address = "6600 AAA Dr";
+                //address.City = " Charlotte";
+                //address.State = "NC";
+                //address.Zip = "28212";
+
+                //GeoCode(address);
+
+                //String email = " , vorfeed@yahoo.com";
+                //email = email.Trim();
+
+                //if( email[0] == ',' )
+                //{
+                //    email = email.Substring(1, email.Length - 1).Trim();
+                //}
+
+                //Console.WriteLine(email);
+
+                //RSATest();
+
+                //Program program = new Program();
 
 
-            //Console.WriteLine("This is a test...");
+                //Console.WriteLine("This is a test...");
 
-            //Task<String> results = program.RogerDogerAsync();
+                //Task<String> results = program.RogerDogerAsync();
 
-            //Console.WriteLine("Testing is over.");
+                //Console.WriteLine("Testing is over.");
 
-            //Console.WriteLine(results.Result);
+                //Console.WriteLine(results.Result);
 
-            GetAppointments_ByAdID("Test")
-                .Select(record => record.ToString())
-                .Distinct()
-                .ToList()
-                .ForEach(x => Console.WriteLine(x));
+                //GetAppointments_ByAdID("Test")
+                //    .Select(record => record.ToString())
+                //    .Distinct()
+                //    .ToList()
+                //    .ForEach(x => Console.WriteLine(x));
 
 
-            Console.ReadLine();
+                Console.ReadLine();
         }
 
         public static List<String> GetAppointments_ByAdID(String str)

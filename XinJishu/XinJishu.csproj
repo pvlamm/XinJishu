@@ -34,7 +34,9 @@
       <HintPath>..\..\WinPhone\packages\CryptSharpOfficial.2.0.0.0\lib\CryptSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logging.cs" />
+    <Compile Include="RequestBlocker.cs" />
     <Compile Include="Security\CryptoHelper.cs" />
     <Compile Include="Security\PasswordManager.cs" />
     <Compile Include="Security\RSAHelper.cs" />

@@ -9,18 +9,13 @@ namespace XinJishu
 {
     public sealed class Logging
     {
-        private static volatile Lazy<Logging> instance = new Lazy<Logging>();
-        private static Object syncRoot { get; set; }
+        private static volatile Lazy<Logging> instance =
+            new Lazy<Logging>(() => new Logging());
+        private static Object syncRoot = new object();
 
         private Logging() { }
 
-        public static Logging Instance
-        {
-            get
-            {
-                return instance.Value;
-            }
-        }
+        public static Logging Instance { get{ return instance.Value; } }
 
         private LoggingType GetLoggingType()
         {
@@ -41,7 +36,9 @@ namespace XinJishu
 
         public static void Log(LogMsgType type, Exception e)
         {
-
+            // xml creation
+            var str = String.Format(@"<error><datetime>{0}</datetime><message>{1}</message><source>{2}</source><stacktrace>{3}</stacktrace></error>", DateTime.UtcNow, e.Message, e.Source, e.StackTrace);
+            
         }
 
     }
@@ -57,6 +54,7 @@ namespace XinJishu
         Text,
         Email,
         Xml,
-        Sql
+        Sql,
+        SqlXml
     }
 }
