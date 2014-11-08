@@ -29,6 +29,17 @@ namespace XinJishu
             return ConfigurationManager.ConnectionStrings[val].ConnectionString;
         }
 
+        private String GetDirectoryPath()
+        {
+            try
+            {
+                return ConfigurationManager.AppSettings["Logging.DirectoryPath"];
+            }
+            catch (Exception e)
+            {
+                return String.Empty;
+            }
+        }
         public static void Log(LogMsgType type, String message)
         {
 
@@ -41,6 +52,23 @@ namespace XinJishu
             
         }
 
+        private String CreateMessage()
+        {
+            String message = String.Empty;
+
+            switch (GetLoggingType()){
+                case LoggingType.Email:
+                case LoggingType.Xml:
+                case LoggingType.Sql:
+                case LoggingType.SqlXml:
+                case LoggingType.Text:
+                default:
+                    break;
+
+            }
+
+            return message;
+        }
     }
 
     public enum LogMsgType
