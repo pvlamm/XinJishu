@@ -17,6 +17,12 @@ namespace XinJishu
 
         public static Logging Instance { get{ return instance.Value; } }
 
+        private SettingsLocation GetSettingsStore()
+        {
+            String val = ConfigurationManager.AppSettings["Logging.SettingsLocation"];
+            return (SettingsLocation)Enum.Parse(typeof(SettingsLocation), val, true);
+        }
+
         private LoggingType GetLoggingType()
         {
             String val = ConfigurationManager.AppSettings["Logging.StorageType"];
@@ -84,5 +90,11 @@ namespace XinJishu
         Xml,
         Sql,
         SqlXml
+    }
+
+    public enum SettingsLocation
+    {
+        Config,
+        SqlServer
     }
 }
