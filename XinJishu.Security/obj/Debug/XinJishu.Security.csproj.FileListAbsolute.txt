@@ -1,0 +1,5 @@
+C:\Prog\Personal\XinJishu\XinJishu.Security\bin\Debug\XinJishu.Security.dll
+C:\Prog\Personal\XinJishu\XinJishu.Security\bin\Debug\XinJishu.Security.pdb
+C:\Prog\Personal\XinJishu\XinJishu.Security\obj\Debug\XinJishu.Security.csprojResolveAssemblyReference.cache
+C:\Prog\Personal\XinJishu\XinJishu.Security\obj\Debug\XinJishu.Security.dll
+C:\Prog\Personal\XinJishu\XinJishu.Security\obj\Debug\XinJishu.Security.pdb
