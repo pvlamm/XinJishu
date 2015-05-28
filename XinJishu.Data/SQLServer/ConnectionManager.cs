@@ -44,6 +44,74 @@ namespace XinJishu.Data.SQLServer
             return dt;
         }
 
+        public virtual List<Hashtable> ExecuteHash(SqlCommand cmd)
+        {
+            List<Hashtable> resultSet = new List<Hashtable>();
+
+            try
+            {
+
+                this.Open();
+                var reader = cmd.ExecuteReader();
+
+                int row_index = 0;
+                while (reader.Read())
+                {
+                    int field_index = 0;
+                    var row = new Hashtable();
+                    while (field_index <= (reader.FieldCount - 1))
+                    {
+                        row[reader.GetName(field_index)] = reader[field_index];
+                        field_index = field_index + 1;
+                    }
+                    resultSet.Add(row);
+                    row_index = row_index + 1;
+                }
+            }
+            catch (Exception x)
+            {
+                throw x;
+            }
+            finally
+            {
+                this.conn.Close();
+            }
+            return resultSet;
+        }
+        public virtual async Task<List<Hashtable>> ExecuteHashAsync(SqlCommand cmd)
+        {
+            List<Hashtable> resultSet = new List<Hashtable>();
+
+            try
+            {
+
+                this.Open();
+                var reader = await cmd.ExecuteReaderAsync();
+
+                int row_index = 0;
+                while (await reader.ReadAsync())
+                {
+                    int field_index = 0;
+                    var row = new Hashtable();
+                    while (field_index <= (reader.FieldCount - 1))
+                    {
+                        row[reader.GetName(field_index)] = reader[field_index];
+                        field_index = field_index + 1;
+                    }
+                    resultSet.Add(row);
+                    row_index = row_index + 1;
+                }
+            }
+            catch (Exception x)
+            {
+                throw x;
+            }
+            finally
+            {
+                this.conn.Close();
+            }
+            return resultSet;
+        }
         public virtual List<Hashtable> ExecuteHash(string Sql, params object[] pars)
         {
             List<Hashtable> resultSet = new List<Hashtable>();
@@ -89,6 +157,7 @@ namespace XinJishu.Data.SQLServer
             }
             return resultSet;
         }
+
 
         public virtual List<Hashtable> ExecuteHash(string sql)
         {
@@ -169,5 +238,15 @@ namespace XinJishu.Data.SQLServer
             this.conn.Dispose();
         }
 
+        public virtual void Open()
+        {
+            if (this.conn.State == System.Data.ConnectionState.Closed)
+                this.conn.Open();
+        }
+
+        public virtual void Close()
+        {
+            this.conn.Close();
+        }
     }
 }

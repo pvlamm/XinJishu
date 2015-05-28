@@ -12,3 +12,5 @@ C:\Prog\Personal\XinJishu\XinJishu.Data\bin\Debug\EntityFramework.SqlServer.dll
 C:\Prog\Personal\XinJishu\XinJishu.Data\bin\Debug\System.Data.SQLite.EF6.dll
 C:\Prog\Personal\XinJishu\XinJishu.Data\bin\Debug\EntityFramework.xml
 C:\Prog\Personal\XinJishu\XinJishu.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Prog\Personal\XinJishu\XinJishu.Data\bin\Debug\Nancy.dll
+C:\Prog\Personal\XinJishu\XinJishu.Data\bin\Debug\Nancy.xml

@@ -102,7 +102,20 @@
         </member>
         <member name="F:System.Data.SQLite.SQLiteConvert.OleAutomationEpochAsJulianDay">
             <summary>
-            The value of the OLE Automation epoch represented as a Julian day.
+            The value of the OLE Automation epoch represented as a Julian day.  This
+            field cannot be removed as the test suite relies upon it.
+            </summary>
+        </member>
+        <member name="F:System.Data.SQLite.SQLiteConvert.MinimumJd">
+            <summary>
+            This is the minimum Julian Day value supported by this library
+            (148731163200000).
+            </summary>
+        </member>
+        <member name="F:System.Data.SQLite.SQLiteConvert.MaximumJd">
+            <summary>
+            This is the maximum Julian Day value supported by this library
+            (464269060799000).
             </summary>
         </member>
         <member name="F:System.Data.SQLite.SQLiteConvert._datetimeFormats">
@@ -183,6 +196,104 @@
             <param name="nativestring">The pointer to the memory where the UTF-8 string is encoded</param>
             <param name="nativestringlen">The number of bytes to decode</param>
             <returns>A string containing the translated character(s)</returns>
+        </member>
+        <member name="M:System.Data.SQLite.SQLiteConvert.isValidJd(System.Int64)">
+            <summary>
+            Checks if the specified <see cref="T:System.Int64"/> is within the
+            supported range for a Julian Day value.
+            </summary>
+            <param name="jd">
+            The Julian Day value to check.
+            </param>
+            <returns>
+            Non-zero if the specified Julian Day value is in the supported
+            range; otherwise, zero.
+            </returns>
+        </member>
+        <member name="M:System.Data.SQLite.SQLiteConvert.DoubleToJd(System.Double)">
+            <summary>
+            Converts a Julian Day value from a <see cref="T:System.Double"/> to an
+            <see cref="T:System.Int64"/>.
+            </summary>
+            <param name="julianDay">
+            The Julian Day <see cref="T:System.Double"/> value to convert.
+            </param>
+            <returns>
+            The resulting Julian Day <see cref="T:System.Int64"/> value.
+            </returns>
+        </member>
+        <member name="M:System.Data.SQLite.SQLiteConvert.JdToDouble(System.Int64)">
+            <summary>
+            Converts a Julian Day value from an <see cref="T:System.Int64"/> to a
+            <see cref="T:System.Double"/>.
+            </summary>
+            <param name="jd">
+            The Julian Day <see cref="T:System.Int64"/> value to convert.
+            </param>
+            <returns>
+            The resulting Julian Day <see cref="T:System.Double"/> value.
+            </returns>
+        </member>
+        <member name="M:System.Data.SQLite.SQLiteConvert.computeYMD(System.Int64,System.Nullable{System.DateTime})">
+            <summary>
+            Converts a Julian Day value to a <see cref="T:System.DateTime"/>.
+            This method was translated from the "computeYMD" function in the
+            "date.c" file belonging to the SQLite core library.
+            </summary>
+            <param name="jd">
+            The Julian Day value to convert.
+            </param>
+            <param name="badValue">
+            The <see cref="T:System.DateTime"/> value to return in the event that the
+            Julian Day is out of the supported range.  If this value is null,
+            an exception will be thrown instead.
+            </param>
+            <returns>
+            A <see cref="T:System.DateTime"/> value that contains the year, month, and
+            day values that are closest to the specified Julian Day value.
+            </returns>
+        </member>
+        <member name="M:System.Data.SQLite.SQLiteConvert.computeHMS(System.Int64,System.Nullable{System.DateTime})">
+            <summary>
+            Converts a Julian Day value to a <see cref="T:System.DateTime"/>.
+            This method was translated from the "computeHMS" function in the
+            "date.c" file belonging to the SQLite core library.
+            </summary>
+            <param name="jd">
+            The Julian Day value to convert.
+            </param>
+            <param name="badValue">
+            The <see cref="T:System.DateTime"/> value to return in the event that the
+            Julian Day value is out of the supported range.  If this value is
+            null, an exception will be thrown instead.
+            </param>
+            <returns>
+            A <see cref="T:System.DateTime"/> value that contains the hour, minute, and
+            second, and millisecond values that are closest to the specified
+            Julian Day value.
+            </returns>
+        </member>
+        <member name="M:System.Data.SQLite.SQLiteConvert.computeJD(System.DateTime)">
+            <summary>
+            Converts a <see cref="T:System.DateTime"/> to a Julian Day value.
+            This method was translated from the "computeJD" function in
+            the "date.c" file belonging to the SQLite core library.
+            Since the range of Julian Day values supported by this method
+            includes all possible (valid) values of a <see cref="T:System.DateTime"/>
+            value, it should be extremely difficult for this method to
+            raise an exception or return an undefined result.
+            </summary>
+            <param name="dateTime">
+            The <see cref="T:System.DateTime"/> value to convert.  This value
+            will be within the range of <see cref="F:System.DateTime.MinValue"/>
+            (00:00:00.0000000, January 1, 0001) to
+            <see cref="F:System.DateTime.MaxValue"/> (23:59:59.9999999, December
+            31, 9999).
+            </param>
+            <returns>
+            The nearest Julian Day value corresponding to the specified
+            <see cref="T:System.DateTime"/> value.
+            </returns>
         </member>
         <member name="M:System.Data.SQLite.SQLiteConvert.ToDateTime(System.String)">
             <summary>
@@ -1232,6 +1343,22 @@
             Non-zero if the associated native connection handle is open.
             </returns>
         </member>
+        <member name="F:System.Data.SQLite.SQLite3.forceLogPrepare">
+            <summary>
+            This field is used to keep track of whether or not the
+            "SQLite_ForceLogPrepare" environment variable has been queried.  If so,
+            it will only be non-zero if the environment variable was present.
+            </summary>
+        </member>
+        <member name="M:System.Data.SQLite.SQLite3.ForceLogPrepare">
+            <summary>
+            Determines if all calls to prepare a SQL query will be logged,
+            regardless of the flags for the associated connection.
+            </summary>
+            <returns>
+            Non-zero to log all calls to prepare a SQL query.
+            </returns>
+        </member>
         <member name="M:System.Data.SQLite.SQLite3.CreateModule(System.Data.SQLite.SQLiteModule,System.Data.SQLite.SQLiteConnectionFlags)">
             <summary>
             Calls the native SQLite core library in order to create a disposable
@@ -1761,6 +1888,13 @@
             should be set.</b>
             </summary>
         </member>
+        <member name="F:System.Data.SQLite.SQLiteConnectionFlags.BindDateTimeWithKind">
+            <summary>
+            When binding parameter values with the <see cref="T:System.DateTime"/>
+            type, take their <see cref="T:System.DateTimeKind"/> into account as
+            well as that of the associated <see cref="T:System.Data.SQLite.SQLiteConnection"/>.
+            </summary>
+        </member>
         <member name="F:System.Data.SQLite.SQLiteConnectionFlags.BindAndGetAllAsText">
             <summary>
             When binding parameter values or returning column values, always
@@ -2002,9 +2136,9 @@
         <member name="M:System.Data.SQLite.SQLiteCommand.Execute(System.String,System.Data.SQLite.SQLiteExecuteType,System.Data.CommandBehavior,System.String,System.Object[])">
             <summary>
             This method creates a new connection, executes the query using the given
-            execution type and command behavior, closes the connection, and returns
-            the results.  If the connection string is null, a temporary in-memory
-            database connection will be used.
+            execution type and command behavior, closes the connection unless a data
+            reader is created, and returns the results.  If the connection string is
+            null, a temporary in-memory database connection will be used.
             </summary>
             <param name="commandText">
             The text of the command to be executed.
@@ -2556,6 +2690,16 @@
             <description>N</description>
             <description>True</description>
             </item>
+            <item>
+            <description>PrepareRetries</description>
+            <description>
+            The maximum number of retries when preparing SQL to be executed.  This
+            normally only applies to preparation errors resulting from the database
+            schema being changed.
+            </description>
+            <description>N</description>
+            <description>3</description>
+            </item>
             </list>
             </remarks>
         </member>
@@ -2604,6 +2748,13 @@
         <member name="F:System.Data.SQLite.SQLiteConnection._transactionLevel">
             <summary>
             Nesting level of the transactions open on the connection
+            </summary>
+        </member>
+        <member name="F:System.Data.SQLite.SQLiteConnection._noDispose">
+            <summary>
+            If this flag is non-zero, the <see cref="M:System.Data.SQLite.SQLiteConnection.Dispose"/> method will have
+            no effect; however, the <see cref="M:System.Data.SQLite.SQLiteConnection.Close"/> method will continue to
+            behave as normal.
             </summary>
         </member>
         <member name="F:System.Data.SQLite.SQLiteConnection._disposing">
@@ -2679,6 +2830,13 @@
         <member name="F:System.Data.SQLite.SQLiteConnection._defaultTimeout">
             <summary>
             Default command timeout
+            </summary>
+        </member>
+        <member name="F:System.Data.SQLite.SQLiteConnection._prepareRetries">
+            <summary>
+            The maximum number of retries when preparing SQL to be executed.  This
+            normally only applies to preparation errors resulting from the database
+            schema being changed.
             </summary>
         </member>
         <member name="F:System.Data.SQLite.SQLiteConnection._parseViaFramework">
@@ -2884,6 +3042,33 @@
             function to be bound.
             </param>
         </member>
+        <member name="M:System.Data.SQLite.SQLiteConnection.ParseConnectionString(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Parses a connection string into component parts using the custom
+            connection string parser.  An exception may be thrown if the syntax
+            of the connection string is incorrect.
+            </summary>
+            <param name="connectionString">
+            The connection string to parse.
+            </param>
+            <param name="parseViaFramework">
+            Non-zero to parse the connection string using the algorithm provided
+            by the framework itself.  This is not applicable when running on the
+            .NET Compact Framework.
+            </param>
+            <param name="allowNameOnly">
+            Non-zero if names are allowed without values.
+            </param>
+            <returns>
+            The list of key/value pairs corresponding to the parameters specified
+            within the connection string.
+            </returns>
+        </member>
+        <member name="M:System.Data.SQLite.SQLiteConnection.Dispose">
+            <summary>
+            Disposes and finalizes the connection, if applicable.
+            </summary>
+        </member>
         <member name="M:System.Data.SQLite.SQLiteConnection.Clone">
             <summary>
             Creates a clone of the connection.  All attached databases and user-defined functions are cloned.  If the existing connection is open, the cloned connection
@@ -3012,13 +3197,22 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:System.Data.SQLite.SQLiteConnection.ParseConnectionString(System.String)">
+        <member name="M:System.Data.SQLite.SQLiteConnection.ParseConnectionString(System.String,System.Boolean)">
             <summary>
-            Parses the connection string into component parts using the custom
-            connection string parser.
+            Parses a connection string into component parts using the custom
+            connection string parser.  An exception may be thrown if the syntax
+            of the connection string is incorrect.
             </summary>
-            <param name="connectionString">The connection string to parse</param>
-            <returns>An array of key-value pairs representing each parameter of the connection string</returns>
+            <param name="connectionString">
+            The connection string to parse.
+            </param>
+            <param name="allowNameOnly">
+            Non-zero if names are allowed without values.
+            </param>
+            <returns>
+            The list of key/value pairs corresponding to the parameters specified
+            within the connection string.
+            </returns>
         </member>
         <member name="M:System.Data.SQLite.SQLiteConnection.ParseConnectionStringViaFramework(System.String,System.Boolean)">
             <summary>
@@ -3034,7 +3228,8 @@
             </param>
             <param name="strict">
             Non-zero to throw an exception if any connection string values are not of
-            the <see cref="T:System.String"/> type.
+            the <see cref="T:System.String"/> type.  This is not applicable when running on
+            the .NET Compact Framework.
             </param>
             <returns>The list of key/value pairs.</returns>
         </member>
@@ -3762,6 +3957,16 @@
             <description>N</description>
             <description>True</description>
             </item>
+            <item>
+            <description>PrepareRetries</description>
+            <description>
+            The maximum number of retries when preparing SQL to be executed.  This
+            normally only applies to preparation errors resulting from the database
+            schema being changed.
+            </description>
+            <description>N</description>
+            <description>3</description>
+            </item>
             </list>
             </remarks>
         </member>
@@ -3780,6 +3985,13 @@
             Gets/sets the default command timeout for newly-created commands.  This is especially useful for
             commands used internally such as inside a SQLiteTransaction, where setting the timeout is not possible.
             This can also be set in the ConnectionString with "Default Timeout"
+            </summary>
+        </member>
+        <member name="P:System.Data.SQLite.SQLiteConnection.PrepareRetries">
+            <summary>
+            The maximum number of retries when preparing SQL to be executed.  This
+            normally only applies to preparation errors resulting from the database
+            schema being changed.
             </summary>
         </member>
         <member name="P:System.Data.SQLite.SQLiteConnection.ParseViaFramework">
@@ -4551,6 +4763,13 @@
             <summary>
             Gets/sets the default command timeout for newly-created commands.  This is especially useful for 
             commands used internally such as inside a SQLiteTransaction, where setting the timeout is not possible.
+            </summary>
+        </member>
+        <member name="P:System.Data.SQLite.SQLiteConnectionStringBuilder.PrepareRetries">
+            <summary>
+            Gets/sets the maximum number of retries when preparing SQL to be executed.
+            This normally only applies to preparation errors resulting from the database
+            schema being changed.
             </summary>
         </member>
         <member name="P:System.Data.SQLite.SQLiteConnectionStringBuilder.Enlist">
@@ -5504,6 +5723,11 @@
             <summary>
             Forces the connection flags cached by this data reader to be refreshed
             from the underlying connection.
+            </summary>
+        </member>
+        <member name="M:System.Data.SQLite.SQLiteDataReader.VerifyForGet">
+            <summary>
+            This method is used to make sure the result set is open and a row is currently available.
             </summary>
         </member>
         <member name="M:System.Data.SQLite.SQLiteDataReader.VerifyType(System.Int32,System.Data.DbType)">
@@ -8184,6 +8408,11 @@
             <summary>
             This class represents the native sqlite3_index_constraint_usage
             structure from the SQLite core library.
+            </summary>
+        </member>
+        <member name="M:System.Data.SQLite.SQLiteIndexConstraintUsage.#ctor">
+            <summary>
+            Constructs a default instance of this class.
             </summary>
         </member>
         <member name="M:System.Data.SQLite.SQLiteIndexConstraintUsage.#ctor(System.Data.SQLite.UnsafeNativeMethods.sqlite3_index_constraint_usage)">
@@ -12452,150 +12681,12 @@
             Finalizes this object instance.
             </summary>
         </member>
-        <member name="T:System.Data.SQLite.SQLiteVirtualTableCursorEnumerator">
+        <member name="T:System.Data.SQLite.SQLiteModuleCommon">
             <summary>
-            This class represents a virtual table cursor to be used with the
-            <see cref="T:System.Data.SQLite.SQLiteModuleEnumerable"/> class.  It is not sealed and may
-            be used as the base class for any user-defined virtual table cursor
-            class that wraps an <see cref="T:System.Collections.IEnumerator"/> object instance.
+            This class contains some virtual methods that may be useful for other
+            virtual table classes.  It specifically does NOT implement any of the
+            <see cref="T:System.Data.SQLite.ISQLiteManagedModule"/> interface methods.
             </summary>
-        </member>
-        <member name="F:System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.enumerator">
-            <summary>
-            The <see cref="T:System.Collections.IEnumerator"/> instance provided when this cursor
-            was created.
-            </summary>
-        </member>
-        <member name="F:System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.endOfEnumerator">
-            <summary>
-            This value will be non-zero if false has been returned from the
-            <see cref="M:System.Collections.IEnumerator.MoveNext"/> method.
-            </summary>
-        </member>
-        <member name="M:System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.#ctor(System.Data.SQLite.SQLiteVirtualTable,System.Collections.IEnumerator)">
-            <summary>
-            Constructs an instance of this class.
-            </summary>
-            <param name="table">
-            The <see cref="T:System.Data.SQLite.SQLiteVirtualTable"/> object instance associated
-            with this object instance.
-            </param>
-            <param name="enumerator">
-            The <see cref="T:System.Collections.IEnumerator"/> instance to expose as a virtual
-            table cursor.
-            </param>
-        </member>
-        <member name="M:System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.MoveNext">
-            <summary>
-            Advances to the next row of the virtual table cursor using the
-            <see cref="M:System.Collections.IEnumerator.MoveNext"/> method of the
-            <see cref="T:System.Collections.IEnumerator"/> object instance.
-            </summary>
-            <returns>
-            Non-zero if the current row is valid; zero otherwise.  If zero is
-            returned, no further rows are available.
-            </returns>
-        </member>
-        <member name="M:System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.Reset">
-            <summary>
-            Resets the virtual table cursor position, also invalidating the
-            current row, using the <see cref="M:System.Collections.IEnumerator.Reset"/> method of
-            the <see cref="T:System.Collections.IEnumerator"/> object instance.
-            </summary>
-        </member>
-        <member name="M:System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.Close">
-            <summary>
-            Closes the virtual table cursor.  This method must not throw any
-            exceptions.
-            </summary>
-        </member>
-        <member name="M:System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.CheckClosed">
-            <summary>
-            Throws an <see cref="T:System.InvalidOperationException"/> if the virtual
-            table cursor has been closed.
-            </summary>
-        </member>
-        <member name="M:System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.CheckDisposed">
-            <summary>
-            Throws an <see cref="T:System.ObjectDisposedException"/> if this object
-            instance has been disposed.
-            </summary>
-        </member>
-        <member name="M:System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.Dispose(System.Boolean)">
-            <summary>
-            Disposes of this object instance.
-            </summary>
-            <param name="disposing">
-            Non-zero if this method is being called from the
-            <see cref="M:System.IDisposable.Dispose"/> method.  Zero if this method is
-            being called from the finalizer.
-            </param>
-        </member>
-        <member name="P:System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.Current">
-            <summary>
-            Returns the value for the current row of the virtual table cursor
-            using the <see cref="P:System.Collections.IEnumerator.Current"/> property of the
-            <see cref="T:System.Collections.IEnumerator"/> object instance.
-            </summary>
-        </member>
-        <member name="P:System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.EndOfEnumerator">
-            <summary>
-            Returns non-zero if the end of the virtual table cursor has been
-            seen (i.e. no more rows are available, including the current one).
-            </summary>
-        </member>
-        <member name="P:System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.IsOpen">
-            <summary>
-            Returns non-zero if the virtual table cursor is open.
-            </summary>
-        </member>
-        <member name="T:System.Data.SQLite.SQLiteModuleEnumerable">
-             <summary>
-             This class implements a virtual table module that exposes an
-             <see cref="T:System.Collections.IEnumerable"/> object instance as a read-only virtual
-             table.  It is not sealed and may be used as the base class for any
-             user-defined virtual table class that wraps an
-             <see cref="T:System.Collections.IEnumerable"/> object instance.  The following short
-             example shows it being used to treat an array of strings as a table
-             data source:
-             <code>
-               public static class Sample
-               {
-                 public static void Main()
-                 {
-                   using (SQLiteConnection connection = new SQLiteConnection(
-                       "Data Source=:memory:;"))
-                   {
-                     connection.Open();
-            
-                     connection.CreateModule(new SQLiteModuleEnumerable(
-                       "sampleModule", new string[] { "one", "two", "three" }));
-            
-                     using (SQLiteCommand command = connection.CreateCommand())
-                     {
-                       command.CommandText =
-                           "CREATE VIRTUAL TABLE t1 USING sampleModule;";
-            
-                       command.ExecuteNonQuery();
-                     }
-            
-                     using (SQLiteCommand command = connection.CreateCommand())
-                     {
-                       command.CommandText = "SELECT * FROM t1;";
-            
-                       using (SQLiteDataReader dataReader = command.ExecuteReader())
-                       {
-                         while (dataReader.Read())
-                           Console.WriteLine(dataReader[0].ToString());
-                       }
-                     }
-            
-                     connection.Close();
-                   }
-                 }
-               }
-             </code>
-             </summary>
         </member>
         <member name="T:System.Data.SQLite.SQLiteModuleNoop">
             <summary>
@@ -13038,11 +13129,278 @@
             being called from the finalizer.
             </param>
         </member>
-        <member name="F:System.Data.SQLite.SQLiteModuleEnumerable.declareSql">
+        <member name="F:System.Data.SQLite.SQLiteModuleCommon.declareSql">
             <summary>
             The CREATE TABLE statement used to declare the schema for the
             virtual table.
             </summary>
+        </member>
+        <member name="F:System.Data.SQLite.SQLiteModuleCommon.objectIdentity">
+            <summary>
+            Non-zero if different object instances with the same value should
+            generate different row identifiers, where applicable.  This has no
+            effect on the .NET Compact Framework.
+            </summary>
+        </member>
+        <member name="M:System.Data.SQLite.SQLiteModuleCommon.#ctor(System.String)">
+            <summary>
+            Constructs an instance of this class.
+            </summary>
+            <param name="name">
+            The name of the module.  This parameter cannot be null.
+            </param>
+        </member>
+        <member name="M:System.Data.SQLite.SQLiteModuleCommon.#ctor(System.String,System.Boolean)">
+            <summary>
+            Constructs an instance of this class.
+            </summary>
+            <param name="name">
+            The name of the module.  This parameter cannot be null.
+            </param>
+            <param name="objectIdentity">
+            Non-zero if different object instances with the same value should
+            generate different row identifiers, where applicable.  This
+            parameter has no effect on the .NET Compact Framework.
+            </param>
+        </member>
+        <member name="M:System.Data.SQLite.SQLiteModuleCommon.GetSqlForDeclareTable">
+            <summary>
+            Determines the SQL statement used to declare the virtual table.
+            This method should be overridden in derived classes if they require
+            a custom virtual table schema.
+            </summary>
+            <returns>
+            The SQL statement used to declare the virtual table -OR- null if it
+            cannot be determined.
+            </returns>
+        </member>
+        <member name="M:System.Data.SQLite.SQLiteModuleCommon.CursorTypeMismatchError(System.Data.SQLite.SQLiteVirtualTableCursor,System.Type)">
+            <summary>
+            Sets the table error message to one that indicates the virtual
+            table cursor is of the wrong type.
+            </summary>
+            <param name="cursor">
+            The <see cref="T:System.Data.SQLite.SQLiteVirtualTableCursor"/> object instance.
+            </param>
+            <param name="type">
+            The <see cref="T:System.Type"/> that the virtual table cursor should be.
+            </param>
+            <returns>
+            The value of <see cref="F:System.Data.SQLite.SQLiteErrorCode.Error"/>.
+            </returns>
+        </member>
+        <member name="M:System.Data.SQLite.SQLiteModuleCommon.GetStringFromObject(System.Data.SQLite.SQLiteVirtualTableCursor,System.Object)">
+            <summary>
+            Determines the string to return as the column value for the object
+            instance value.
+            </summary>
+            <param name="cursor">
+            The <see cref="T:System.Data.SQLite.SQLiteVirtualTableCursor"/> object instance
+            associated with the previously opened virtual table cursor to be
+            used.
+            </param>
+            <param name="value">
+            The object instance to return a string representation for.
+            </param>
+            <returns>
+            The string representation of the specified object instance or null
+            upon failure.
+            </returns>
+        </member>
+        <member name="M:System.Data.SQLite.SQLiteModuleCommon.MakeRowId(System.Int32,System.Int32)">
+            <summary>
+            Constructs an <see cref="T:System.Int64"/> unique row identifier from two
+            <see cref="T:System.Int32"/> values.  The first <see cref="T:System.Int32"/> value
+            must contain the row sequence number for the current row and the
+            second value must contain the hash code of the key column value
+            for the current row.
+            </summary>
+            <param name="rowIndex">
+            The integer row sequence number for the current row.
+            </param>
+            <param name="hashCode">
+            The hash code of the key column value for the current row.
+            </param>
+            <returns>
+            The unique row identifier or zero upon failure.
+            </returns>
+        </member>
+        <member name="M:System.Data.SQLite.SQLiteModuleCommon.GetRowIdFromObject(System.Data.SQLite.SQLiteVirtualTableCursor,System.Object)">
+            <summary>
+            Determines the unique row identifier for the current row.
+            </summary>
+            <param name="cursor">
+            The <see cref="T:System.Data.SQLite.SQLiteVirtualTableCursor"/> object instance
+            associated with the previously opened virtual table cursor to be
+            used.
+            </param>
+            <param name="value">
+            The object instance to return a unique row identifier for.
+            </param>
+            <returns>
+            The unique row identifier or zero upon failure.
+            </returns>
+        </member>
+        <member name="M:System.Data.SQLite.SQLiteModuleCommon.CheckDisposed">
+            <summary>
+            Throws an <see cref="T:System.ObjectDisposedException"/> if this object
+            instance has been disposed.
+            </summary>
+        </member>
+        <member name="M:System.Data.SQLite.SQLiteModuleCommon.Dispose(System.Boolean)">
+            <summary>
+            Disposes of this object instance.
+            </summary>
+            <param name="disposing">
+            Non-zero if this method is being called from the
+            <see cref="M:System.IDisposable.Dispose"/> method.  Zero if this method is
+            being called from the finalizer.
+            </param>
+        </member>
+        <member name="T:System.Data.SQLite.SQLiteVirtualTableCursorEnumerator">
+            <summary>
+            This class represents a virtual table cursor to be used with the
+            <see cref="T:System.Data.SQLite.SQLiteModuleEnumerable"/> class.  It is not sealed and may
+            be used as the base class for any user-defined virtual table cursor
+            class that wraps an <see cref="T:System.Collections.IEnumerator"/> object instance.
+            </summary>
+        </member>
+        <member name="F:System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.enumerator">
+            <summary>
+            The <see cref="T:System.Collections.IEnumerator"/> instance provided when this cursor
+            was created.
+            </summary>
+        </member>
+        <member name="F:System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.endOfEnumerator">
+            <summary>
+            This value will be non-zero if false has been returned from the
+            <see cref="M:System.Collections.IEnumerator.MoveNext"/> method.
+            </summary>
+        </member>
+        <member name="M:System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.#ctor(System.Data.SQLite.SQLiteVirtualTable,System.Collections.IEnumerator)">
+            <summary>
+            Constructs an instance of this class.
+            </summary>
+            <param name="table">
+            The <see cref="T:System.Data.SQLite.SQLiteVirtualTable"/> object instance associated
+            with this object instance.
+            </param>
+            <param name="enumerator">
+            The <see cref="T:System.Collections.IEnumerator"/> instance to expose as a virtual
+            table cursor.
+            </param>
+        </member>
+        <member name="M:System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.MoveNext">
+            <summary>
+            Advances to the next row of the virtual table cursor using the
+            <see cref="M:System.Collections.IEnumerator.MoveNext"/> method of the
+            <see cref="T:System.Collections.IEnumerator"/> object instance.
+            </summary>
+            <returns>
+            Non-zero if the current row is valid; zero otherwise.  If zero is
+            returned, no further rows are available.
+            </returns>
+        </member>
+        <member name="M:System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.Reset">
+            <summary>
+            Resets the virtual table cursor position, also invalidating the
+            current row, using the <see cref="M:System.Collections.IEnumerator.Reset"/> method of
+            the <see cref="T:System.Collections.IEnumerator"/> object instance.
+            </summary>
+        </member>
+        <member name="M:System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.Close">
+            <summary>
+            Closes the virtual table cursor.  This method must not throw any
+            exceptions.
+            </summary>
+        </member>
+        <member name="M:System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.CheckClosed">
+            <summary>
+            Throws an <see cref="T:System.InvalidOperationException"/> if the virtual
+            table cursor has been closed.
+            </summary>
+        </member>
+        <member name="M:System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.CheckDisposed">
+            <summary>
+            Throws an <see cref="T:System.ObjectDisposedException"/> if this object
+            instance has been disposed.
+            </summary>
+        </member>
+        <member name="M:System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.Dispose(System.Boolean)">
+            <summary>
+            Disposes of this object instance.
+            </summary>
+            <param name="disposing">
+            Non-zero if this method is being called from the
+            <see cref="M:System.IDisposable.Dispose"/> method.  Zero if this method is
+            being called from the finalizer.
+            </param>
+        </member>
+        <member name="P:System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.Current">
+            <summary>
+            Returns the value for the current row of the virtual table cursor
+            using the <see cref="P:System.Collections.IEnumerator.Current"/> property of the
+            <see cref="T:System.Collections.IEnumerator"/> object instance.
+            </summary>
+        </member>
+        <member name="P:System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.EndOfEnumerator">
+            <summary>
+            Returns non-zero if the end of the virtual table cursor has been
+            seen (i.e. no more rows are available, including the current one).
+            </summary>
+        </member>
+        <member name="P:System.Data.SQLite.SQLiteVirtualTableCursorEnumerator.IsOpen">
+            <summary>
+            Returns non-zero if the virtual table cursor is open.
+            </summary>
+        </member>
+        <member name="T:System.Data.SQLite.SQLiteModuleEnumerable">
+             <summary>
+             This class implements a virtual table module that exposes an
+             <see cref="T:System.Collections.IEnumerable"/> object instance as a read-only virtual
+             table.  It is not sealed and may be used as the base class for any
+             user-defined virtual table class that wraps an
+             <see cref="T:System.Collections.IEnumerable"/> object instance.  The following short
+             example shows it being used to treat an array of strings as a table
+             data source:
+             <code>
+               public static class Sample
+               {
+                 public static void Main()
+                 {
+                   using (SQLiteConnection connection = new SQLiteConnection(
+                       "Data Source=:memory:;"))
+                   {
+                     connection.Open();
+            
+                     connection.CreateModule(new SQLiteModuleEnumerable(
+                       "sampleModule", new string[] { "one", "two", "three" }));
+            
+                     using (SQLiteCommand command = connection.CreateCommand())
+                     {
+                       command.CommandText =
+                           "CREATE VIRTUAL TABLE t1 USING sampleModule;";
+            
+                       command.ExecuteNonQuery();
+                     }
+            
+                     using (SQLiteCommand command = connection.CreateCommand())
+                     {
+                       command.CommandText = "SELECT * FROM t1;";
+            
+                       using (SQLiteDataReader dataReader = command.ExecuteReader())
+                       {
+                         while (dataReader.Read())
+                           Console.WriteLine(dataReader[0].ToString());
+                       }
+                     }
+            
+                     connection.Close();
+                   }
+                 }
+               }
+             </code>
+             </summary>
         </member>
         <member name="F:System.Data.SQLite.SQLiteModuleEnumerable.enumerable">
             <summary>
@@ -13086,29 +13444,6 @@
             parameter has no effect on the .NET Compact Framework.
             </param>
         </member>
-        <member name="M:System.Data.SQLite.SQLiteModuleEnumerable.GetSqlForDeclareTable">
-            <summary>
-            Determines the SQL statement used to declare the virtual table.
-            This method should be overridden in derived classes if they require
-            a custom virtual table schema.
-            </summary>
-            <returns>
-            The SQL statement used to declare the virtual table -OR- null if it
-            cannot be determined.
-            </returns>
-        </member>
-        <member name="M:System.Data.SQLite.SQLiteModuleEnumerable.CursorTypeMismatchError(System.Data.SQLite.SQLiteVirtualTableCursor)">
-            <summary>
-            Sets the table error message to one that indicates the virtual
-            table cursor is of the wrong type.
-            </summary>
-            <param name="cursor">
-            The <see cref="T:System.Data.SQLite.SQLiteVirtualTableCursor"/> object instance.
-            </param>
-            <returns>
-            The value of <see cref="F:System.Data.SQLite.SQLiteErrorCode.Error"/>.
-            </returns>
-        </member>
         <member name="M:System.Data.SQLite.SQLiteModuleEnumerable.CursorEndOfEnumeratorError(System.Data.SQLite.SQLiteVirtualTableCursor)">
             <summary>
             Sets the table error message to one that indicates the virtual
@@ -13119,58 +13454,6 @@
             </param>
             <returns>
             The value of <see cref="F:System.Data.SQLite.SQLiteErrorCode.Error"/>.
-            </returns>
-        </member>
-        <member name="M:System.Data.SQLite.SQLiteModuleEnumerable.GetStringFromObject(System.Data.SQLite.SQLiteVirtualTableCursor,System.Object)">
-            <summary>
-            Determines the string to return as the column value for the object
-            instance value.
-            </summary>
-            <param name="cursor">
-            The <see cref="T:System.Data.SQLite.SQLiteVirtualTableCursor"/> object instance
-            associated with the previously opened virtual table cursor to be
-            used.
-            </param>
-            <param name="value">
-            The object instance to return a string representation for.
-            </param>
-            <returns>
-            The string representation of the specified object instance or null
-            upon failure.
-            </returns>
-        </member>
-        <member name="M:System.Data.SQLite.SQLiteModuleEnumerable.MakeRowId(System.Int32,System.Int32)">
-            <summary>
-            Constructs an <see cref="T:System.Int64"/> unique row identifier from two
-            <see cref="T:System.Int32"/> values.  The first <see cref="T:System.Int32"/> value
-            must contain the row sequence number for the current row and the
-            second value must contain the hash code of the enumerator value
-            for the current row.
-            </summary>
-            <param name="rowIndex">
-            The integer row sequence number for the current row.
-            </param>
-            <param name="hashCode">
-            The hash code of the enumerator value for the current row.
-            </param>
-            <returns>
-            The unique row identifier or zero upon failure.
-            </returns>
-        </member>
-        <member name="M:System.Data.SQLite.SQLiteModuleEnumerable.GetRowIdFromObject(System.Data.SQLite.SQLiteVirtualTableCursor,System.Object)">
-            <summary>
-            Determines the unique row identifier for the current row.
-            </summary>
-            <param name="cursor">
-            The <see cref="T:System.Data.SQLite.SQLiteVirtualTableCursor"/> object instance
-            associated with the previously opened virtual table cursor to be
-            used.
-            </param>
-            <param name="value">
-            The object instance to return a unique row identifier for.
-            </param>
-            <returns>
-            The unique row identifier or zero upon failure.
             </returns>
         </member>
         <member name="M:System.Data.SQLite.SQLiteModuleEnumerable.Create(System.Data.SQLite.SQLiteConnection,System.IntPtr,System.String[],System.Data.SQLite.SQLiteVirtualTable@,System.String@)">
