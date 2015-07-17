@@ -1,0 +1,6 @@
+C:\prog\Personal\XinJishu\XinJishu.Data\bin\SURFACE\XinJishu.Data.dll.config
+C:\prog\Personal\XinJishu\XinJishu.Data\bin\SURFACE\XinJishu.Data.dll
+C:\prog\Personal\XinJishu\XinJishu.Data\bin\SURFACE\XinJishu.Data.pdb
+C:\prog\Personal\XinJishu\XinJishu.Data\obj\SURFACE\XinJishu.Data.dll
+C:\prog\Personal\XinJishu\XinJishu.Data\obj\SURFACE\XinJishu.Data.pdb
+C:\prog\Personal\XinJishu\XinJishu.Data\obj\SURFACE\XinJishu.Data.csprojResolveAssemblyReference.cache
