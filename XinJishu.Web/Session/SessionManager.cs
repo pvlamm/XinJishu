@@ -9,26 +9,26 @@ using System.Threading.Tasks;
 using XinJishu.Data.SQLServer;
 using XinJishu.Web.Model;
 
-namespace XinJishu.Web.Account
+
+namespace XinJishu.Web.Session
 {
-    public partial class RoleManager : IDisposable
+    public class SessionManager : IDisposable
     {
-        
         private String connectionStringName { get; set; }
         
         /// <summary>
         /// Assumes your DB ConnectionString name will be "default"
         /// </summary>    
-        public RoleManager() {
+        public SessionManager() {
             connectionStringName = "default";
         }
 
-        public RoleManager(String connectionStringName)
+        public SessionManager(String connectionStringName)
         {
             this.connectionStringName = connectionStringName;
         }
 
-        public IList<Hashtable> GetRoles()
+        public IList<Hashtable> ListSessions()
         {
             using (XinJishu.Data.SQLServer.DataAccess conn = new Data.SQLServer.DataAccess(connectionStringName))
             {
@@ -36,14 +36,14 @@ namespace XinJishu.Web.Account
                 {
                     List<RoleModel> roles = new List<RoleModel>();
 
-                    cmd.CommandText = "[xju].[Roles_Get]";
+                    cmd.CommandText = "[xju].[Session_List]";
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                     return conn.ExecuteHash(cmd);
                 }
             }
         }
-        public void InsertRole(Object name)
+        public IList<Hashtable> ListSessionsForUsername(Object username)
         {
             using (XinJishu.Data.SQLServer.DataAccess conn = new Data.SQLServer.DataAccess(connectionStringName))
             {
@@ -51,90 +51,91 @@ namespace XinJishu.Web.Account
                 {
                     List<RoleModel> roles = new List<RoleModel>();
 
-                    cmd.CommandText = "[xju].[Roles_Insert]";
+                    cmd.CommandText = "[xju].[Session_ListByUsername]";
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@name", name);
-
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-        public void DeleteRole(Object name)
-        {
-            using (XinJishu.Data.SQLServer.DataAccess conn = new Data.SQLServer.DataAccess(connectionStringName))
-            {
-                using (var cmd = conn.GetCommand())
-                {
-                    List<RoleModel> roles = new List<RoleModel>();
-
-                    cmd.CommandText = "[xju].[Roles_Delete]";
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                    cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@name", name);
-
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-        public void AddUserToRole(Object userId, Object roleId)
-        {
-            using (XinJishu.Data.SQLServer.DataAccess conn = new Data.SQLServer.DataAccess(connectionStringName))
-            {
-                using (var cmd = conn.GetCommand())
-                {
-                    List<RoleModel> roles = new List<RoleModel>();
-
-                    cmd.CommandText = "[xju].[Roles_AddUserToRole]";
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                    cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@userId", userId);
-                    cmd.Parameters.AddWithValue("@roleId", roleId);
-
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-        public void RemoveUserFromRole(Object userId, Object roleId)
-        {
-            using (XinJishu.Data.SQLServer.DataAccess conn = new Data.SQLServer.DataAccess(connectionStringName))
-            {
-                using (var cmd = conn.GetCommand())
-                {
-                    List<RoleModel> roles = new List<RoleModel>();
-
-                    cmd.CommandText = "[xju].[Roles_RemoveUserFromRole]";
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                    cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@userId", userId);
-                    cmd.Parameters.AddWithValue("@roleId", roleId);
-
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-        public IList<Hashtable> ListRolesForUser(Object userId)
-        {
-            using (XinJishu.Data.SQLServer.DataAccess conn = new Data.SQLServer.DataAccess(connectionStringName))
-            {
-                using (var cmd = conn.GetCommand())
-                {
-                    List<RoleModel> roles = new List<RoleModel>();
-
-                    cmd.CommandText = "[xju].[Roles_ListForUserId]";
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                    cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@userId", userId);
+                    cmd.Parameters.AddWithValue("@username", username);
 
                     return conn.ExecuteHash(cmd);
                 }
             }
-        } 
+        }
+
+        public Hashtable CreateSession(Object username)
+        {
+
+            using (XinJishu.Data.SQLServer.DataAccess conn = new Data.SQLServer.DataAccess(connectionStringName))
+            {
+                using (var cmd = conn.GetCommand())
+                {
+                    List<RoleModel> roles = new List<RoleModel>();
+
+                    cmd.CommandText = "[xju].[Session_Create]";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@username", username);
+
+                    return conn.ExecuteHash(cmd).FirstOrDefault();
+                }
+            }
+        }
+        public Hashtable UpdateSession(Object username)
+        {
+
+            using (XinJishu.Data.SQLServer.DataAccess conn = new Data.SQLServer.DataAccess(connectionStringName))
+            {
+                using (var cmd = conn.GetCommand())
+                {
+                    List<RoleModel> roles = new List<RoleModel>();
+
+                    cmd.CommandText = "[xju].[Session_Update]";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@username", username);
+
+                    return conn.ExecuteHash(cmd).FirstOrDefault();
+                }
+            }
+        }
+
+        public Hashtable DeleteSessionById(Int32 id)
+        {
+
+            using (XinJishu.Data.SQLServer.DataAccess conn = new Data.SQLServer.DataAccess(connectionStringName))
+            {
+                using (var cmd = conn.GetCommand())
+                {
+                    List<RoleModel> roles = new List<RoleModel>();
+
+                    cmd.CommandText = "[xju].[Session_Delete]";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    return conn.ExecuteHash(cmd).FirstOrDefault();                }
+            }
+        }
+
+        public void DeleteAllSession()
+        {
+
+            using (XinJishu.Data.SQLServer.DataAccess conn = new Data.SQLServer.DataAccess(connectionStringName))
+            {
+                using (var cmd = conn.GetCommand())
+                {
+                    List<RoleModel> roles = new List<RoleModel>();
+
+                    cmd.CommandText = "[xju].[Session_DeleteAll]";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
 
         public void Dispose()
         {
