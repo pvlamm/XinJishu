@@ -37,7 +37,7 @@ namespace XinJishu.Web.Account
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@name", email);
+                    cmd.Parameters.AddWithValue("@email", email);
 
                     return conn.ExecuteHash(cmd).FirstOrDefault();
                 }
@@ -48,23 +48,67 @@ namespace XinJishu.Web.Account
         {
             using (XinJishu.Data.SQLServer.DataAccess conn = new Data.SQLServer.DataAccess(connectionStringName))
             {
+                using (var cmd = conn.GetCommand())
+                {
+                    List<RoleModel> roles = new List<RoleModel>();
 
+                    cmd.CommandText = "[xju].[User_DeleteUserById]";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    cmd.ExecuteNonQuery();
+                }
             }
 
         }
-        public void DeleteUserByPublicId(Guid id)
+        public void DeleteUserByPublicId(Guid publicId)
         {
             using (XinJishu.Data.SQLServer.DataAccess conn = new Data.SQLServer.DataAccess(connectionStringName))
             {
+                using (var cmd = conn.GetCommand())
+                {
+                    List<RoleModel> roles = new List<RoleModel>();
 
+                    cmd.CommandText = "[xju].[User_DeleteUserByPublicId]";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@publicId", publicId);
+
+                    cmd.ExecuteNonQuery();
+                }
             }
 
         }
-        public void UpdateUser(UserModel account)
+
+        /// <summary>
+        /// Updates a UserModel object against the database
+        /// </summary>
+        /// <param name="user"></param>
+        public void UpdateUser(UserModel user)
         {
             using (XinJishu.Data.SQLServer.DataAccess conn = new Data.SQLServer.DataAccess(connectionStringName))
             {
+                using (var cmd = conn.GetCommand())
+                {
+                    List<RoleModel> roles = new List<RoleModel>();
 
+                    cmd.CommandText = "[xju].[User_Update]";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.Clear();
+
+                    cmd.Parameters.AddWithValue("@id", user.id);
+                    cmd.Parameters.AddWithValue("@email", user.email);
+                    cmd.Parameters.AddWithValue("@password", user.password);
+
+                    foreach (var item in user.fields)
+                        cmd.Parameters.AddWithValue("@" + item.Key, item.Value);
+
+                    cmd.ExecuteNonQuery();
+                }
             }
 
         }
