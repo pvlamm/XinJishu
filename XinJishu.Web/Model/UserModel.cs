@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace XinJishu.Web.Model
 {
-    public class AccountModel
+    public class UserModel
     {
-        public AccountModel() { }
+        public UserModel() {
+            roles = new List<RoleModel>();
+            fields = new Dictionary<String, Object>();
+        }
 
         public Int32 id { get; set; }
         public Guid publicId { get; set; }

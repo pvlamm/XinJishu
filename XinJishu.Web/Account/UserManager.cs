@@ -9,46 +9,42 @@ using XinJishu.Web.Model;
 
 namespace XinJishu.Web.Account
 {
-    public partial class AccountManager : IDisposable
+    public partial class UserManager : IDisposable
     {
         private String connectionStringName { get; set; }
         
         /// <summary>
         /// Assumes your DB ConnectionString name will be "default"
         /// </summary>    
-        public AccountManager() {
+        public UserManager() {
             connectionStringName = "default";
         }
 
-        public AccountManager(String connectionStringName)
+        public UserManager(String connectionStringName)
         {
             this.connectionStringName = connectionStringName;
         }
 
-        public Boolean Authenticate(String email, String password)
-        {
-            // Test email if valid email address or not
-
-            if (String.IsNullOrWhiteSpace(password))
-                return false;
-
-            using (XinJishu.Data.SQLServer.DataAccess conn = new Data.SQLServer.DataAccess(connectionStringName))
-            {
-
-            }
-
-            return true;
-        }
-
-        public Hashtable GetAccountByEmail(String email)
+        public Hashtable GetUserByEmail(String email)
         {
             using (XinJishu.Data.SQLServer.DataAccess conn = new Data.SQLServer.DataAccess(connectionStringName))
             {
+                using (var cmd = conn.GetCommand())
+                {
+                    List<RoleModel> roles = new List<RoleModel>();
 
+                    cmd.CommandText = "[xju].[User_GetByEmail]";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@name", email);
+
+                    return conn.ExecuteHash(cmd).FirstOrDefault();
+                }
             }
         }
 
-        public void DeleteAccountById(Int32 id)
+        public void DeleteUserById(Int32 id)
         {
             using (XinJishu.Data.SQLServer.DataAccess conn = new Data.SQLServer.DataAccess(connectionStringName))
             {
@@ -56,7 +52,7 @@ namespace XinJishu.Web.Account
             }
 
         }
-        public void DeleteAccountByPublicId(Guid id)
+        public void DeleteUserByPublicId(Guid id)
         {
             using (XinJishu.Data.SQLServer.DataAccess conn = new Data.SQLServer.DataAccess(connectionStringName))
             {
@@ -64,7 +60,7 @@ namespace XinJishu.Web.Account
             }
 
         }
-        public void UpdateAccount(AccountModel account)
+        public void UpdateUser(UserModel account)
         {
             using (XinJishu.Data.SQLServer.DataAccess conn = new Data.SQLServer.DataAccess(connectionStringName))
             {
