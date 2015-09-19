@@ -39,9 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account\AccountManager.cs" />
+    <Compile Include="Account\UserManager.cs" />
     <Compile Include="Account\RoleManager.cs" />
-    <Compile Include="Model\AccountModel.cs" />
+    <Compile Include="Model\UserModel.cs" />
     <Compile Include="Model\RoleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Session\SessionManager.cs" />
@@ -72,6 +72,9 @@
     <EmbeddedResource Include="Scripts\xju.User_Create.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\xju.vwUsers_Create.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

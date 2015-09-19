@@ -102,7 +102,7 @@ namespace XinJishu.Web.Account
 
                     cmd.Parameters.AddWithValue("@id", user.id);
                     cmd.Parameters.AddWithValue("@email", user.email);
-                    cmd.Parameters.AddWithValue("@password", user.password);
+                    cmd.Parameters.AddWithValue("@pwd", user.pwd);
 
                     foreach (var item in user.fields)
                         cmd.Parameters.AddWithValue("@" + item.Key, item.Value);
