@@ -77,6 +77,13 @@
     <Content Include="Scripts\xju.vwUsers_Create.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /Y "$(TargetDir)*.dll" "$(SolutionDir)..\..\..\_libraries\XinJishu\debug"
+xcopy /Y "$(TargetDir)*.pdb" "$(SolutionDir)..\..\..\_libraries\XinJishu\debug"
+xcopy /Y "$(TargetDir)*.config" "$(SolutionDir)..\..\..\_libraries\XinJishu\debug"
+
+</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
