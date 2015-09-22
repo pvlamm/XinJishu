@@ -20,4 +20,5 @@ namespace XinJishu.Web.Model
         public IList<RoleModel> roles { get; set; }
         public IDictionary<String, Object> fields { get; set; }
     }
+
 }

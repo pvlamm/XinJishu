@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Account\UserManager.cs" />
     <Compile Include="Account\RoleManager.cs" />
+    <Compile Include="Logging\LoggingManager.cs" />
     <Compile Include="Model\UserModel.cs" />
     <Compile Include="Model\RoleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -51,13 +53,6 @@
       <Project>{d70e70d7-001d-437a-8afb-715cac4ab602}</Project>
       <Name>XinJishu.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XinJishu\XinJishu.csproj">
-      <Project>{ff451906-01b9-4b0e-848d-b8ae59a9ac35}</Project>
-      <Name>XinJishu</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Access\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Scripts\xju.Role_Create.sql">
@@ -74,6 +69,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\xju.spUser_DeleteUserById.sql" />
+    <Content Include="Scripts\xju.spUser_DeleteUserByPublicId.sql" />
+    <Content Include="Scripts\xju.spUser_GetByEmail.sql" />
     <Content Include="Scripts\xju.vwUsers_Create.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
