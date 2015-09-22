@@ -19,6 +19,36 @@
             Unsalted SHA-1. Used in htpasswd files.
             </summary>
         </member>
+        <member name="F:CryptSharp.LdapCrypterVariant.SSha256">
+            <summary>
+            Salted SHA-256.
+            </summary>
+        </member>
+        <member name="F:CryptSharp.LdapCrypterVariant.Sha256">
+            <summary>
+            Unsalted SHA-256.
+            </summary>
+        </member>
+        <member name="F:CryptSharp.LdapCrypterVariant.SSha384">
+            <summary>
+            Salted SHA-384.
+            </summary>
+        </member>
+        <member name="F:CryptSharp.LdapCrypterVariant.Sha384">
+            <summary>
+            Unsalted SHA-384.
+            </summary>
+        </member>
+        <member name="F:CryptSharp.LdapCrypterVariant.SSha512">
+            <summary>
+            Salted SHA-512.
+            </summary>
+        </member>
+        <member name="F:CryptSharp.LdapCrypterVariant.Sha512">
+            <summary>
+            Unsalted SHA-512.
+            </summary>
+        </member>
         <member name="F:CryptSharp.LdapCrypterVariant.SMD5">
             <summary>
             Salted MD-5.
@@ -379,6 +409,14 @@
         <member name="M:CryptSharp.Crypter.GenerateSalt">
             <summary>
             Generates a salt string with default options.
+            The purpose of salt is to make dictionary attacks against a whole password database much harder,
+            by causing the crypted password to be different even if two users have the same uncrypted password.
+            </summary>
+            <returns>The salt string.</returns>
+        </member>
+        <member name="M:CryptSharp.Crypter.GenerateSalt(System.Int32)">
+            <summary>
+            Generates a salt string using the specified number of rounds.
             The purpose of salt is to make dictionary attacks against a whole password database much harder,
             by causing the crypted password to be different even if two users have the same uncrypted password.
             </summary>

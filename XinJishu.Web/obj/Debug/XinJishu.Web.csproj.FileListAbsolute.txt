@@ -1,0 +1,11 @@
+C:\prog\Personal\XinJishu\XinJishu.Web\obj\Debug\XinJishu.Web.csprojResolveAssemblyReference.cache
+C:\prog\Personal\XinJishu\XinJishu.Web\bin\Debug\Scripts\xju.Role_Create.sql
+C:\prog\Personal\XinJishu\XinJishu.Web\bin\Debug\Scripts\xju.Sessions.sql
+C:\prog\Personal\XinJishu\XinJishu.Web\bin\Debug\Scripts\xju.UserInRoles_Create.sql
+C:\prog\Personal\XinJishu\XinJishu.Web\bin\Debug\Scripts\xju.User_Create.sql
+C:\prog\Personal\XinJishu\XinJishu.Web\bin\Debug\XinJishu.Web.dll
+C:\prog\Personal\XinJishu\XinJishu.Web\bin\Debug\XinJishu.Web.pdb
+C:\prog\Personal\XinJishu\XinJishu.Web\bin\Debug\XinJishu.Data.dll
+C:\prog\Personal\XinJishu\XinJishu.Web\bin\Debug\XinJishu.Data.pdb
+C:\prog\Personal\XinJishu\XinJishu.Web\obj\Debug\XinJishu.Web.dll
+C:\prog\Personal\XinJishu\XinJishu.Web\obj\Debug\XinJishu.Web.pdb

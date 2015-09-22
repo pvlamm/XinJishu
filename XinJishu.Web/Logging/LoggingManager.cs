@@ -41,7 +41,7 @@ namespace XinJishu.Web.Logging
                         cmd.CommandText = "[xju].[WebRequest_Insert]";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                        return conn.ExecuteHash(cmd);
+                        cmd.ExecuteNonQuery();
                     }
                 }
 
