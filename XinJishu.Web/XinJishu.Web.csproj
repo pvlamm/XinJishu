@@ -69,6 +69,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\xju.SEED_SCRIPT.sql" />
     <Content Include="Scripts\xju.spUser_DeleteUserById.sql" />
     <Content Include="Scripts\xju.spUser_DeleteUserByPublicId.sql" />
     <Content Include="Scripts\xju.spUser_GetByEmail.sql" />

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -21,8 +22,18 @@ namespace XinJishu.Data.SQLServer
 
             this.connection_string = connection_string;
 
-            this.conn = new SqlConnection(this.connection_string);
+            try
+            {
+                this.conn = new SqlConnection(this.connection_string);
+            }
+            catch
+            {
+                var connStr = ConfigurationManager.ConnectionStrings[this.connection_string].ConnectionString;
 
+                this.conn = new SqlConnection(connStr);
+
+                this.connection_string = connStr;
+            }
         }
 
         public SqlCommand GetCommand(){
