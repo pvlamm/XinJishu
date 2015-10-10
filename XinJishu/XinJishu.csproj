@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converter.cs" />
     <Compile Include="Imaging\ImageUtility.cs" />
     <Compile Include="Imaging\ValuePillMaker.cs" />
     <Compile Include="Logging.cs" />

@@ -14,3 +14,14 @@ C:\prog\clients\TranslatedDevelopment\XinJishu\XinJishu.Web\bin\Debug\CryptSharp
 C:\prog\clients\TranslatedDevelopment\XinJishu\XinJishu.Web\obj\Debug\XinJishu.Web.csprojResolveAssemblyReference.cache
 C:\prog\clients\TranslatedDevelopment\XinJishu\XinJishu.Web\obj\Debug\XinJishu.Web.dll
 C:\prog\clients\TranslatedDevelopment\XinJishu\XinJishu.Web\obj\Debug\XinJishu.Web.pdb
+C:\Prog\Clients\TransDev\XinJishu\XinJishu.Web\bin\Debug\Scripts\xju.Role_Create.sql
+C:\Prog\Clients\TransDev\XinJishu\XinJishu.Web\bin\Debug\Scripts\xju.Sessions.sql
+C:\Prog\Clients\TransDev\XinJishu\XinJishu.Web\bin\Debug\Scripts\xju.UserInRoles_Create.sql
+C:\Prog\Clients\TransDev\XinJishu\XinJishu.Web\bin\Debug\Scripts\xju.User_Create.sql
+C:\Prog\Clients\TransDev\XinJishu\XinJishu.Web\bin\Debug\XinJishu.Web.dll
+C:\Prog\Clients\TransDev\XinJishu\XinJishu.Web\bin\Debug\XinJishu.Web.pdb
+C:\Prog\Clients\TransDev\XinJishu\XinJishu.Web\bin\Debug\XinJishu.Data.dll
+C:\Prog\Clients\TransDev\XinJishu\XinJishu.Web\bin\Debug\XinJishu.Data.pdb
+C:\Prog\Clients\TransDev\XinJishu\XinJishu.Web\obj\Debug\XinJishu.Web.csprojResolveAssemblyReference.cache
+C:\Prog\Clients\TransDev\XinJishu\XinJishu.Web\obj\Debug\XinJishu.Web.dll
+C:\Prog\Clients\TransDev\XinJishu\XinJishu.Web\obj\Debug\XinJishu.Web.pdb
