@@ -116,7 +116,8 @@ namespace XinJishu.Web.Session
                     cmd.Parameters.Clear();
                     cmd.Parameters.AddWithValue("@id", id);
 
-                    return conn.ExecuteHash(cmd).FirstOrDefault();                }
+                    return conn.ExecuteHash(cmd).FirstOrDefault();                
+                }
             }
         }
 
