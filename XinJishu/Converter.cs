@@ -14,7 +14,7 @@ namespace XinJishu
             Int32 r = default(Int32);
 
             Int32.TryParse(t, out r);
-
+            
             return r;
         }
 
