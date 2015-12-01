@@ -13,15 +13,17 @@ namespace XinJishu.Data.SQLServer
     public abstract class ConnectionManager : IDisposable
     {
         private SqlConnection conn { get; set; }
+        private SqlTransaction trans { get; set; }
+        private bool useTransactionMode { get; set; }
         private string connection_string { get; set; }
-
         public ConnectionManager(String connection_string) {
 
             if (String.IsNullOrWhiteSpace(connection_string))
                 throw new Exception("Connection String not optional, it is required");
 
             this.connection_string = connection_string;
-
+            this.useTransactionMode = false;
+            this.trans = null;
             try
             {
                 this.conn = new SqlConnection(this.connection_string);
@@ -29,13 +31,10 @@ namespace XinJishu.Data.SQLServer
             catch
             {
                 var connStr = ConfigurationManager.ConnectionStrings[this.connection_string].ConnectionString;
-
                 this.conn = new SqlConnection(connStr);
-
                 this.connection_string = connStr;
             }
         }
-
         public SqlCommand GetCommand(){
 
             if (this.conn.State == System.Data.ConnectionState.Closed)
@@ -43,6 +42,25 @@ namespace XinJishu.Data.SQLServer
 
             return this.conn.CreateCommand();
 
+        }
+        public bool BeginTransaction()
+        {
+            this.useTransactionMode = true;
+            trans = conn.BeginTransaction();
+
+            return this.trans != null;
+        }
+        public bool RollbackTransaction()
+        {
+            this.trans.Rollback();
+            this.trans = null;
+            return this.trans == null;
+        }
+        public bool CommitTransaction()
+        {
+            this.trans.Commit();
+            this.trans = null;
+            return this.trans == null;
         }
 
         public DataTable ExecuteDataTable(SqlCommand cmd)
@@ -54,7 +72,6 @@ namespace XinJishu.Data.SQLServer
 
             return dt;
         }
-
         public virtual List<Hashtable> ExecuteHash(SqlCommand cmd)
         {
             List<Hashtable> resultSet = new List<Hashtable>();
@@ -168,8 +185,6 @@ namespace XinJishu.Data.SQLServer
             }
             return resultSet;
         }
-
-
         public virtual List<Hashtable> ExecuteHash(string sql)
         {
             List<Hashtable> resultSet = new List<Hashtable>();
@@ -206,7 +221,6 @@ namespace XinJishu.Data.SQLServer
             }
             return resultSet;
         }
-
         public virtual List<Hashtable> ExecuteHash(string sql, params string[] pars)
         {
             List<Hashtable> resultSet = new List<Hashtable>();
@@ -243,21 +257,21 @@ namespace XinJishu.Data.SQLServer
             }
             return resultSet;
         }
-
-        public void Dispose()
-        {
-            this.conn.Dispose();
-        }
-
         public virtual void Open()
         {
             if (this.conn.State == System.Data.ConnectionState.Closed)
                 this.conn.Open();
         }
-
         public virtual void Close()
         {
             this.conn.Close();
+        }
+        public void Dispose()
+        {
+            if (this.trans != null)
+                this.RollbackTransaction();
+
+            this.conn.Dispose();
         }
     }
 }

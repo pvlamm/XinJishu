@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="Account\UserManager.cs" />
     <Compile Include="Account\RoleManager.cs" />
-    <Compile Include="Logging\LoggingManager.cs" />
+    <Compile Include="Model\Logging\LoggingManager.cs" />
     <Compile Include="Model\UserModel.cs" />
     <Compile Include="Model\RoleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
