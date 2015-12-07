@@ -12,9 +12,8 @@ namespace XinJishu.Data.SQLServer
 {
     public abstract class ConnectionManager : IDisposable
     {
-        private SqlConnection conn { get; set; }
+        protected SqlConnection conn { get; set; }
         private string connection_string { get; set; }
-
         public ConnectionManager(String connection_string) {
 
             if (String.IsNullOrWhiteSpace(connection_string))
@@ -35,7 +34,6 @@ namespace XinJishu.Data.SQLServer
                 this.connection_string = connStr;
             }
         }
-
         public SqlCommand GetCommand(){
 
             if (this.conn.State == System.Data.ConnectionState.Closed)
@@ -44,7 +42,6 @@ namespace XinJishu.Data.SQLServer
             return this.conn.CreateCommand();
 
         }
-
         public DataTable ExecuteDataTable(SqlCommand cmd)
         {
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
@@ -54,7 +51,6 @@ namespace XinJishu.Data.SQLServer
 
             return dt;
         }
-
         public virtual List<Hashtable> ExecuteHash(SqlCommand cmd)
         {
             List<Hashtable> resultSet = new List<Hashtable>();
@@ -168,8 +164,6 @@ namespace XinJishu.Data.SQLServer
             }
             return resultSet;
         }
-
-
         public virtual List<Hashtable> ExecuteHash(string sql)
         {
             List<Hashtable> resultSet = new List<Hashtable>();
@@ -206,7 +200,6 @@ namespace XinJishu.Data.SQLServer
             }
             return resultSet;
         }
-
         public virtual List<Hashtable> ExecuteHash(string sql, params string[] pars)
         {
             List<Hashtable> resultSet = new List<Hashtable>();
@@ -243,21 +236,18 @@ namespace XinJishu.Data.SQLServer
             }
             return resultSet;
         }
-
-        public void Dispose()
-        {
-            this.conn.Dispose();
-        }
-
         public virtual void Open()
         {
             if (this.conn.State == System.Data.ConnectionState.Closed)
                 this.conn.Open();
         }
-
         public virtual void Close()
         {
             this.conn.Close();
+        }
+        public void Dispose()
+        {
+            this.conn.Dispose();
         }
     }
 }

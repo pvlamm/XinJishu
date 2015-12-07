@@ -5,3 +5,10 @@ C:\Prog\Personal\XinJishu\Tests\SecurityTests\bin\Debug\XinJishu.Security.pdb
 C:\Prog\Personal\XinJishu\Tests\SecurityTests\obj\Debug\SecurityTests.csprojResolveAssemblyReference.cache
 C:\Prog\Personal\XinJishu\Tests\SecurityTests\obj\Debug\SecurityTests.dll
 C:\Prog\Personal\XinJishu\Tests\SecurityTests\obj\Debug\SecurityTests.pdb
+C:\Prog\Clients\TransDev\XinJishu\Tests\SecurityTests\bin\Debug\SecurityTests.dll
+C:\Prog\Clients\TransDev\XinJishu\Tests\SecurityTests\bin\Debug\SecurityTests.pdb
+C:\Prog\Clients\TransDev\XinJishu\Tests\SecurityTests\bin\Debug\XinJishu.Security.dll
+C:\Prog\Clients\TransDev\XinJishu\Tests\SecurityTests\bin\Debug\XinJishu.Security.pdb
+C:\Prog\Clients\TransDev\XinJishu\Tests\SecurityTests\obj\Debug\SecurityTests.csprojResolveAssemblyReference.cache
+C:\Prog\Clients\TransDev\XinJishu\Tests\SecurityTests\obj\Debug\SecurityTests.dll
+C:\Prog\Clients\TransDev\XinJishu\Tests\SecurityTests\obj\Debug\SecurityTests.pdb
