@@ -35,7 +35,7 @@ namespace XinJishu.Games.Empires.Data
             s.galactic_radius = Convert.ToDecimal(dr["galactic_radius"]);
             s.type = (StarType)Enum.Parse(typeof(StarType), dr["type"].ToString(), true);
             s.speed = Convert.ToDecimal(dr["speed"]);
-            s.size = Convert.ToInt32(dr["size"]);
+            //s.size = Convert.ToInt32(dr["size"]);
 
             return s;
         }

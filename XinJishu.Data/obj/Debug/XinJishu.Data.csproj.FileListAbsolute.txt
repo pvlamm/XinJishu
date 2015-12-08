@@ -17,3 +17,5 @@ C:\Prog\Clients\TransDev\XinJishu\XinJishu.Data\obj\Debug\XinJishu.Data.pdb
 C:\prog\clients\TransDev\XinJishu\XinJishu.Data\bin\Debug\Nancy.dll
 C:\prog\clients\TransDev\XinJishu\XinJishu.Data\bin\Debug\Nancy.xml
 C:\prog\clients\TransDev\XinJishu\XinJishu.Data\obj\Debug\XinJishu.Data.csprojResolveAssemblyReference.cache
+C:\prog\clients\TranslatedDevelopment\XinJishu\XinJishu.Data\bin\Debug\Nancy.dll
+C:\prog\clients\TranslatedDevelopment\XinJishu\XinJishu.Data\bin\Debug\Nancy.xml

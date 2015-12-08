@@ -49,8 +49,13 @@
   <ItemGroup>
     <Compile Include="Account\UserManager.cs" />
     <Compile Include="Account\RoleManager.cs" />
+<<<<<<< HEAD
+    <Compile Include="Model\Logging\LoggingManager.cs" />
+=======
     <Compile Include="Google\ReCaptchaHelper.cs" />
     <Compile Include="Google\SimpleMail.cs" />
+    <Compile Include="Logging\LoggingManager.cs" />
+>>>>>>> 60ddc85d181d19363232d4e438b4e2ec8d29bf47
     <Compile Include="Model\UserModel.cs" />
     <Compile Include="Model\RoleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,7 +90,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Access\" />
-    <Folder Include="Logging\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

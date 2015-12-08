@@ -43,7 +43,12 @@
     <Compile Include="Email\EmailManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\XinJishu.Data\XinJishu.Data.csproj">
+      <Project>{d70e70d7-001d-437a-8afb-715cac4ab602}</Project>
+      <Name>XinJishu.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Email\EmailSetup.sql" />
   </ItemGroup>
