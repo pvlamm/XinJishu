@@ -12,7 +12,7 @@ namespace XinJishu.Data.SQLServer
 {
     public abstract class ConnectionManager : IDisposable
     {
-        private SqlConnection conn { get; set; }
+        protected SqlConnection conn { get; set; }
         private SqlTransaction trans { get; set; }
         private bool useTransactionMode { get; set; }
         private string connection_string { get; set; }
