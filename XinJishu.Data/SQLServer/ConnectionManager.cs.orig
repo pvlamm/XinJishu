@@ -12,9 +12,13 @@ namespace XinJishu.Data.SQLServer
 {
     public abstract class ConnectionManager : IDisposable
     {
-        protected SqlConnection conn { get; set; }
+<<<<<<< HEAD
+        private SqlConnection conn { get; set; }
         private SqlTransaction trans { get; set; }
         private bool useTransactionMode { get; set; }
+=======
+        protected SqlConnection conn { get; set; }
+>>>>>>> 6db7f255fd69fbf06738ad0dd372941afd532844
         private string connection_string { get; set; }
         public ConnectionManager(String connection_string) {
 
@@ -43,6 +47,7 @@ namespace XinJishu.Data.SQLServer
             return this.conn.CreateCommand();
 
         }
+<<<<<<< HEAD
         public bool BeginTransaction()
         {
             this.useTransactionMode = true;
@@ -63,6 +68,8 @@ namespace XinJishu.Data.SQLServer
             return this.trans == null;
         }
 
+=======
+>>>>>>> 6db7f255fd69fbf06738ad0dd372941afd532844
         public DataTable ExecuteDataTable(SqlCommand cmd)
         {
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
@@ -268,9 +275,12 @@ namespace XinJishu.Data.SQLServer
         }
         public void Dispose()
         {
+<<<<<<< HEAD
             if (this.trans != null)
                 this.RollbackTransaction();
 
+=======
+>>>>>>> 6db7f255fd69fbf06738ad0dd372941afd532844
             this.conn.Dispose();
         }
     }
