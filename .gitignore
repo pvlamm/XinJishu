@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Tests/SecurityTests/obj/Debug
+/XinJishu/obj/Debug
+/XinJishu.Data/obj/Debug
+/XinJishu.Games.Empires/obj/Debug
+/XinJishu.Net/obj/Debug
+/XinJishu.Security/obj/Debug
+*.cache
+/XinJishu.Web/obj/Debug
