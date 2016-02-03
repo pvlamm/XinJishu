@@ -2,3 +2,8 @@ C:\prog\clients\TranslatedDevelopment\XinJishu\XinJishu.Security\bin\Debug\XinJi
 C:\prog\clients\TranslatedDevelopment\XinJishu\XinJishu.Security\bin\Debug\XinJishu.Security.pdb
 C:\prog\clients\TranslatedDevelopment\XinJishu\XinJishu.Security\obj\Debug\XinJishu.Security.dll
 C:\prog\clients\TranslatedDevelopment\XinJishu\XinJishu.Security\obj\Debug\XinJishu.Security.pdb
+C:\prog\clients\TransDev\XinJishu\XinJishu.Security\bin\Debug\XinJishu.Security.dll
+C:\prog\clients\TransDev\XinJishu\XinJishu.Security\bin\Debug\XinJishu.Security.pdb
+C:\prog\clients\TransDev\XinJishu\XinJishu.Security\obj\Debug\XinJishu.Security.csprojResolveAssemblyReference.cache
+C:\prog\clients\TransDev\XinJishu\XinJishu.Security\obj\Debug\XinJishu.Security.dll
+C:\prog\clients\TransDev\XinJishu\XinJishu.Security\obj\Debug\XinJishu.Security.pdb

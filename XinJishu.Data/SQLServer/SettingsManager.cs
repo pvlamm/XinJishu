@@ -22,7 +22,7 @@ namespace XinJishu.Data.SQLServer
             {
 
                 sql_comm.CommandType = System.Data.CommandType.Text;
-                sql_comm.CommandText = @"SELECT Value FROM Settings WHERE Key = @Key";
+                sql_comm.CommandText = @"SELECT [Value] FROM Settings WHERE [Key] = @Key";
                 sql_comm.Parameters.Clear();
                 sql_comm.Parameters.AddWithValue("@Key", Key);
 
@@ -93,10 +93,9 @@ namespace XinJishu.Data.SQLServer
             String sql = @"
 IF NOT EXISTS (select * from sysobjects where name='Settings' and xtype='U')
     CREATE TABLE Settings (
-        [Key] VARCHAR(25) UNIQUE NOT NULL PRIMARY KEY,
-        [Value] NVARCHAR(5120) NULL
-    )
-GO";
+        [Key] VARCHAR(25) UNIQUE NOT NULL,
+        [Value] NVARCHAR(MAX) NULL
+    )";
             using (SqlCommand cmd = GetCommand())
             {
                 cmd.CommandType = CommandType.Text;

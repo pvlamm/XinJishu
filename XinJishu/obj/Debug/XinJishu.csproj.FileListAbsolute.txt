@@ -6,3 +6,10 @@ C:\prog\clients\TranslatedDevelopment\XinJishu\XinJishu\bin\Debug\CryptSharp.xml
 C:\prog\clients\TranslatedDevelopment\XinJishu\XinJishu\obj\Debug\XinJishu.csprojResolveAssemblyReference.cache
 C:\prog\clients\TranslatedDevelopment\XinJishu\XinJishu\obj\Debug\XinJishu.dll
 C:\prog\clients\TranslatedDevelopment\XinJishu\XinJishu\obj\Debug\XinJishu.pdb
+C:\prog\clients\TransDev\XinJishu\XinJishu\bin\Debug\XinJishu.dll
+C:\prog\clients\TransDev\XinJishu\XinJishu\bin\Debug\XinJishu.pdb
+C:\prog\clients\TransDev\XinJishu\XinJishu\bin\Debug\CryptSharp.dll
+C:\prog\clients\TransDev\XinJishu\XinJishu\bin\Debug\CryptSharp.pdb
+C:\prog\clients\TransDev\XinJishu\XinJishu\bin\Debug\CryptSharp.xml
+C:\prog\clients\TransDev\XinJishu\XinJishu\obj\Debug\XinJishu.dll
+C:\prog\clients\TransDev\XinJishu\XinJishu\obj\Debug\XinJishu.pdb
