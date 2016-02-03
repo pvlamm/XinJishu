@@ -11,7 +11,7 @@ namespace XinJishu.Data.SQLServer
 {
     public class SettingsManager : ConnectionManager, ISettings
     {
-        public SettingsManager(String connection_string) : base(connection_string) {
+        public SettingsManager(string connection_string) : base(connection_string) {
 
             InitializeTable();
 
