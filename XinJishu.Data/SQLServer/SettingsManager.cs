@@ -51,8 +51,18 @@ namespace XinJishu.Data.SQLServer
                 else
                     val = Value.ToString();
 
-                sql_comm.CommandType = System.Data.CommandType.Text;
-                sql_comm.CommandText = @"INSERT OR REPLACE INTO Settings (Key, Value) VALUES (@Key, @Value) ";
+                sql_comm.CommandType = CommandType.Text;
+                sql_comm.CommandText = @"
+merge 
+	 [dbo].[Settings]
+using (Values (@Key) )
+as T ([Key]) 
+on T.[Key] = [Settings].[Key]
+when not matched then
+	insert ([Key], [Value])
+	values (@Key, @Value)
+when matched then
+	update set [Value] = @Value;";
                 sql_comm.Parameters.Clear();
                 sql_comm.Parameters.AddWithValue("@Key", Key);
                 sql_comm.Parameters.AddWithValue("@Value", val);
