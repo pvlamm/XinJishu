@@ -45,22 +45,27 @@ namespace XinJishu.Data.SQLServer
         }
         public bool BeginTransaction()
         {
-            this.useTransactionMode = true;
+            useTransactionMode = true;
             trans = conn.BeginTransaction();
 
-            return this.trans != null;
+            return trans != null;
         }
         public bool RollbackTransaction()
         {
-            this.trans.Rollback();
-            this.trans = null;
-            return this.trans == null;
+            trans.Rollback();
+            trans.Dispose();
+            trans = null;
+            return trans == null;
         }
         public bool CommitTransaction()
         {
-            this.trans.Commit();
-            this.trans = null;
-            return this.trans == null;
+            if (trans == null)
+                return false;
+
+            trans.Commit();
+            trans.Dispose();
+            trans = null;
+            return trans == null;
         }
 
         public DataTable ExecuteDataTable(SqlCommand cmd)

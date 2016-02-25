@@ -16,6 +16,19 @@ namespace XinJishu.Data.SQLServer
         {
 
         }
+
+        //public IQueryable<LoggingMessage> SearchLog()
+        //{
+
+        //}
+
+        public class LoggingMessage
+        {
+            public int id { get; set; }
+            public DateTime LogDate { get; set; }
+            public LoggingType Type { get; set; }
+            public string message { get; set; }
+        }
     }
 
     public enum LoggingType
